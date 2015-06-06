@@ -20,6 +20,9 @@
     <Filter Include="Source Files\Math">
       <UniqueIdentifier>{38444b44-ebf1-4cae-a1a3-1a0b80b045a1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Blitz Files">
+      <UniqueIdentifier>{e8e48b8c-14c2-40b5-b48d-d9b55fe6852d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -92,7 +95,11 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="BlitzUtility.decls" />
-    <None Include="BlitzUtility.bb" />
+    <None Include="BlitzUtility.bb">
+      <Filter>Blitz Files</Filter>
+    </None>
+    <None Include="BlitzUtility.decls">
+      <Filter>Blitz Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
