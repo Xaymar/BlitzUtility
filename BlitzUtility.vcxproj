@@ -158,6 +158,14 @@
     <ClCompile Include="Utility\WindowMessageHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="LICENSE">
+      <Link>LICENSE</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="LICENSE.lesser">
+      <Link>LICENSE.lesser</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="BlitzUtility.bb">
       <Link>BlitzUtility.bb</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
