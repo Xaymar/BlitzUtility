@@ -40,8 +40,3 @@ struct BlitzTypeInfo {
 
 void BlitzList_OnProcessAttach();
 void BlitzList_OnProcessDetach();
-
-DLL_EXPORT void* BlitzList_New(void* type);
-DLL_EXPORT void BlitzList_Activate(void* list);
-DLL_EXPORT void BlitzList_Deactivate(void* list);
-DLL_EXPORT void BlitzList_Delete(void* list);

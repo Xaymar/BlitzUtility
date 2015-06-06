@@ -129,13 +129,14 @@
   <ItemGroup>
     <ClInclude Include="dllmain.h" />
     <ClInclude Include="Containers\BlitzList.h" />
-    <ClInclude Include="Utility\Indexer.h" />
+    <ClInclude Include="Utility\IndexerV1.h" />
     <ClInclude Include="Database\SQLite\SQLite.h" />
     <ClInclude Include="Database\SQLite\sqlite3.h" />
     <ClInclude Include="Math\Matrix3.h" />
     <ClInclude Include="Math\Vector2.h" />
     <ClInclude Include="Math\Vector3.h" />
     <ClInclude Include="Utility\Display.h" />
+    <ClInclude Include="Utility\IndexerV2.h" />
     <ClInclude Include="Utility\WindowMessageHandler.h" />
   </ItemGroup>
   <ItemGroup>
@@ -146,13 +147,14 @@
       <CallingConvention Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Cdecl</CallingConvention>
       <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CompileAsC</CompileAs>
     </ClCompile>
-    <ClCompile Include="Utility\Indexer.cpp" />
+    <ClCompile Include="Utility\IndexerV1.cpp" />
     <ClCompile Include="Database\SQLite\SQLite.cpp" />
     <ClCompile Include="Math\Matrix3.cpp" />
     <ClCompile Include="Math\Vector3.cpp" />
     <ClCompile Include="Math\Vector2.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="Utility\Display.cpp" />
+    <ClCompile Include="Utility\IndexerV2.cpp" />
     <ClCompile Include="Utility\WindowMessageHandler.cpp" />
   </ItemGroup>
   <ItemGroup>

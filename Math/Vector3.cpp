@@ -1,4 +1,3 @@
-#pragma once
 #include "Vector3.h"
 
 void Vector3::set(const float &o)
@@ -226,6 +225,9 @@ DLL_EXPORT void Vector3_SetP(Vector3* a, float x, float y, float z) {
 DLL_EXPORT void Vector3_SetV(Vector3* a, Vector3* b) {
 	a->set(*b);
 }
+#pragma comment(linker, "/EXPORT:Vector3_Set=_Vector3_Set@8")
+#pragma comment(linker, "/EXPORT:Vector3_SetP=_Vector3_SetP@16")
+#pragma comment(linker, "/EXPORT:Vector3_SetV=_Vector3_SetV@8")
 
 DLL_EXPORT void Vector3_Add(Vector3* a, float o) {
 	a->add(o);
@@ -236,6 +238,9 @@ DLL_EXPORT void Vector3_AddP(Vector3* a, float x, float y, float z) {
 DLL_EXPORT void Vector3_AddV(Vector3* a, Vector3* b) {
 	a->add(*b);
 }
+#pragma comment(linker, "/EXPORT:Vector3_Add=_Vector3_Add@8")
+#pragma comment(linker, "/EXPORT:Vector3_AddP=_Vector3_AddP@16")
+#pragma comment(linker, "/EXPORT:Vector3_AddV=_Vector3_AddV@8")
 
 DLL_EXPORT void Vector3_Sub(Vector3* a, float o) {
 	a->sub(o);
@@ -246,6 +251,9 @@ DLL_EXPORT void Vector3_SubP(Vector3* a, float x, float y, float z) {
 DLL_EXPORT void Vector3_SubV(Vector3* a, Vector3* b) {
 	a->sub(*b);
 }
+#pragma comment(linker, "/EXPORT:Vector3_Sub=_Vector3_Sub@8")
+#pragma comment(linker, "/EXPORT:Vector3_SubP=_Vector3_SubP@16")
+#pragma comment(linker, "/EXPORT:Vector3_SubV=_Vector3_SubV@8")
 
 DLL_EXPORT void Vector3_Mul(Vector3* a, float o) {
 	a->mul(o);
@@ -256,6 +264,9 @@ DLL_EXPORT void Vector3_MulP(Vector3* a, float x, float y, float z) {
 DLL_EXPORT void Vector3_MulV(Vector3* a, Vector3* b) {
 	a->mul(*b);
 }
+#pragma comment(linker, "/EXPORT:Vector3_Mul=_Vector3_Mul@8")
+#pragma comment(linker, "/EXPORT:Vector3_MulP=_Vector3_MulP@16")
+#pragma comment(linker, "/EXPORT:Vector3_MulV=_Vector3_MulV@8")
 
 DLL_EXPORT void Vector3_Div(Vector3* a, float o) {
 	a->div(o);
@@ -266,6 +277,9 @@ DLL_EXPORT void Vector3_DivP(Vector3* a, float x, float y, float z) {
 DLL_EXPORT void Vector3_DivV(Vector3* a, Vector3* b) {
 	a->div(*b);
 }
+#pragma comment(linker, "/EXPORT:Vector3_Div=_Vector3_Div@8")
+#pragma comment(linker, "/EXPORT:Vector3_DivP=_Vector3_DivP@16")
+#pragma comment(linker, "/EXPORT:Vector3_DivV=_Vector3_DivV@8")
 
 DLL_EXPORT float Vector3_Length(Vector3* a) {
 	return (float)a->length();
@@ -276,6 +290,9 @@ DLL_EXPORT float Vector3_DistanceP(Vector3* a, float x, float y, float z) {
 DLL_EXPORT float Vector3_DistanceV(Vector3* a, Vector3* b) {
 	return (float)a->distance(*b);
 }
+#pragma comment(linker, "/EXPORT:Vector3_Length=_Vector3_Length@4")
+#pragma comment(linker, "/EXPORT:Vector3_DistanceP=_Vector3_DistanceP@16")
+#pragma comment(linker, "/EXPORT:Vector3_DistanceV=_Vector3_DistanceV@8")
 
 DLL_EXPORT float Vector3_DotP(Vector3* a, float x, float y, float z) {
 	return (float)a->dot(x, y, z);
@@ -294,6 +311,11 @@ DLL_EXPORT void Vector3_CrossV(Vector3* a, Vector3* b, Vector3* out) {
 DLL_EXPORT void Vector3_Normalize(Vector3* a) {
 	a->normalize();
 }
+#pragma comment(linker, "/EXPORT:Vector3_DotP=_Vector3_DotP@16")
+#pragma comment(linker, "/EXPORT:Vector3_DotV=_Vector3_DotV@8")
+#pragma comment(linker, "/EXPORT:Vector3_CrossP=_Vector3_CrossP@20")
+#pragma comment(linker, "/EXPORT:Vector3_CrossV=_Vector3_CrossV@12")
+#pragma comment(linker, "/EXPORT:Vector3_Normalize=_Vector3_Normalize@4")
 
 DLL_EXPORT void Vector3_Rotate(Vector3* a, float pitch, float yaw, float roll) {
 	a->rotate(pitch, yaw, roll);
@@ -304,6 +326,9 @@ DLL_EXPORT void Vector3_RotateAroundP(Vector3* a, float x, float y, float z, flo
 DLL_EXPORT void Vector3_RotateAroundV(Vector3* a, Vector3* b, float pitch, float yaw, float roll) {
 	a->rotateAround(*b, pitch, yaw, roll);
 }
+#pragma comment(linker, "/EXPORT:Vector3_Rotate=_Vector3_Rotate@16")
+#pragma comment(linker, "/EXPORT:Vector3_RotateAroundP=_Vector3_RotateAroundP@28")
+#pragma comment(linker, "/EXPORT:Vector3_RotateAroundV=_Vector3_RotateAroundV@20")
 
 DLL_EXPORT float Vector3_DeltaPitchP(Vector3* a, float x, float y, float z) {
 	return (float)a->deltaPitch(x, y, z);
@@ -317,6 +342,10 @@ DLL_EXPORT float Vector3_DeltaYawP(Vector3* a, float x, float y, float z) {
 DLL_EXPORT float Vector3_DeltaYawV(Vector3* a, Vector3* b) {
 	return (float)a->deltaYaw(*b);
 }
+#pragma comment(linker, "/EXPORT:Vector3_DeltaPitchP=_Vector3_DeltaPitchP@16")
+#pragma comment(linker, "/EXPORT:Vector3_DeltaPitchV=_Vector3_DeltaPitchV@8")
+#pragma comment(linker, "/EXPORT:Vector3_DeltaYawP=_Vector3_DeltaYawP@16")
+#pragma comment(linker, "/EXPORT:Vector3_DeltaYawV=_Vector3_DeltaYawV@8")
 
 DLL_EXPORT char* Vector3_Serialize(Vector3* a) {
 	return a->serialize();
@@ -324,3 +353,5 @@ DLL_EXPORT char* Vector3_Serialize(Vector3* a) {
 DLL_EXPORT void Vector3_Deserialize(Vector3* a, char* s) {
 	a->deserialize(s);
 }
+#pragma comment(linker, "/EXPORT:Vector3_Serialize=_Vector3_Serialize@4")
+#pragma comment(linker, "/EXPORT:Vector3_Deserialize=_Vector3_Deserialize@8")

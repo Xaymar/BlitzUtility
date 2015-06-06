@@ -1,4 +1,3 @@
-#pragma once
 #include "BlitzList.h"
 
 std::list<BlitzTypeInfo*>* BlitzUtility_Lists;
@@ -12,9 +11,9 @@ void BlitzList_OnProcessDetach() {
 	delete BlitzUtility_Lists;
 }
 
-DLL_EXPORT void* BlitzList_New(void* elementPtr) {
-	BBVarElement* element = (BBVarElement*)(((int*)elementPtr) - 5);
-	BBVarType* type = (BBVarType*)(*(((int*)elementPtr) - 2));
+DLL_EXPORT void* BlitzList_New(uint32_t* elementPtr) {
+	BBVarElement* element = (BBVarElement*)(((uint32_t*)elementPtr) - 5);
+	BBVarType* type = (BBVarType*)(*(((uint32_t*)elementPtr) - 2));
 
 	// Create and initialize structure to hold information about this change.
 	BlitzTypeInfo* bti = new BlitzTypeInfo();
@@ -29,14 +28,15 @@ DLL_EXPORT void* BlitzList_New(void* elementPtr) {
 	element->nextPtr->prevPtr = element->prevPtr;
 
 	// Correct element next/prev pointers to no longer be inside the old list.
-	element->prevPtr = (BBVarElement*)((int*)type + 1);
-	element->nextPtr = (BBVarElement*)((int*)type + 1);
+	element->prevPtr = (BBVarElement*)((uint32_t*)type + 1);
+	element->nextPtr = (BBVarElement*)((uint32_t*)type + 1);
 
 	BlitzUtility_Lists->push_back(bti);
 	return bti;
 }
+#pragma comment(linker, "/EXPORT:BlitzList_New=_BlitzList_New@4")
 
-DLL_EXPORT void BlitzList_Activate(void* list) {
+DLL_EXPORT void BlitzList_Activate(uint32_t* list) {
 	BlitzTypeInfo* bti = (BlitzTypeInfo*)list;
 
 	// Store current pointers
@@ -47,8 +47,9 @@ DLL_EXPORT void BlitzList_Activate(void* list) {
 	bti->type->used.nextPtr = bti->ourNextPtr;
 	bti->type->used.prevPtr = bti->ourPrevPtr;
 }
+#pragma comment(linker, "/EXPORT:BlitzList_Activate=_BlitzList_Activate@4")
 
-DLL_EXPORT void BlitzList_Deactivate(void* list) {
+DLL_EXPORT void BlitzList_Deactivate(uint32_t* list) {
 	BlitzTypeInfo* bti = (BlitzTypeInfo*)list;
 
 	// Store current pointers
@@ -59,9 +60,11 @@ DLL_EXPORT void BlitzList_Deactivate(void* list) {
 	bti->type->used.nextPtr = bti->lastNextPtr;
 	bti->type->used.prevPtr = bti->lastPrevPtr;
 }
+#pragma comment(linker, "/EXPORT:BlitzList_Deactivate=_BlitzList_Deactivate@4")
 
-DLL_EXPORT void BlitzList_Delete(void* list) {
+DLL_EXPORT void BlitzList_Delete(uint32_t* list) {
 	BlitzTypeInfo* bti = (BlitzTypeInfo*)list;
 	BlitzUtility_Lists->remove(bti);
 	delete bti;
 }
+#pragma comment(linker, "/EXPORT:BlitzList_Delete=_BlitzList_Delete@4")

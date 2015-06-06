@@ -19,6 +19,7 @@ DLL_EXPORT void Display_Enumerate() {
 
 	EnumDisplayMonitors(NULL, NULL, Display_EnumerateProcedure, 0);
 }
+#pragma comment(linker, "/EXPORT:Display_Enumerate=_Display_Enumerate@0")
 
 BOOL CALLBACK Display_EnumerateProcedure(HMONITOR hMonitor, HDC hdcMonitor, LPRECT lprcMonitor, LPARAM dwData) {
 	Display *thisDisplay = new Display;
@@ -36,9 +37,10 @@ BOOL CALLBACK Display_EnumerateProcedure(HMONITOR hMonitor, HDC hdcMonitor, LPRE
 DLL_EXPORT int Display_Count() {
 	return Display_List->size();
 }
+#pragma comment(linker, "/EXPORT:Display_Count=_Display_Count@0")
 
-DLL_EXPORT void Display_Get(int displayId, LPRECT display) {
-	if (Display_List->size() > (unsigned)displayId) {
+DLL_EXPORT void Display_Get(uint32_t displayId, LPRECT display) {
+	if (Display_List->size() > displayId) {
 		auto iterator = Display_List->begin();
 
 		std::advance(iterator, displayId);
@@ -51,4 +53,5 @@ DLL_EXPORT void Display_Get(int displayId, LPRECT display) {
 		}
 	}
 }
+#pragma comment(linker, "/EXPORT:Display_Get=_Display_Get@8")
 

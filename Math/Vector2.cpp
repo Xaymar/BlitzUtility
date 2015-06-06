@@ -1,4 +1,3 @@
-#pragma once
 #include "Vector2.h"
 
 void Vector2::set(const float &o)
@@ -172,6 +171,9 @@ DLL_EXPORT void Vector2_SetP(Vector2* a, float x, float y) {
 DLL_EXPORT void Vector2_SetV(Vector2* a, Vector2* b) {
 	a->set(*b);
 }
+#pragma comment(linker, "/EXPORT:Vector2_Set=_Vector2_Set@8")
+#pragma comment(linker, "/EXPORT:Vector2_SetP=_Vector2_SetP@12")
+#pragma comment(linker, "/EXPORT:Vector2_SetV=_Vector2_SetV@8")
 
 DLL_EXPORT void Vector2_Add(Vector2* a, float o) {
 	a->add(o);
@@ -182,6 +184,9 @@ DLL_EXPORT void Vector2_AddP(Vector2* a, float x, float y) {
 DLL_EXPORT void Vector2_AddV(Vector2* a, Vector2* b) {
 	a->add(*b);
 }
+#pragma comment(linker, "/EXPORT:Vector2_Add=_Vector2_Add@8")
+#pragma comment(linker, "/EXPORT:Vector2_AddP=_Vector2_AddP@12")
+#pragma comment(linker, "/EXPORT:Vector2_AddV=_Vector2_AddV@8")
 
 DLL_EXPORT void Vector2_Sub(Vector2* a, float o) {
 	a->sub(o);
@@ -192,6 +197,9 @@ DLL_EXPORT void Vector2_SubP(Vector2* a, float x, float y) {
 DLL_EXPORT void Vector2_SubV(Vector2* a, Vector2* b) {
 	a->sub(*b);
 }
+#pragma comment(linker, "/EXPORT:Vector2_Sub=_Vector2_Sub@8")
+#pragma comment(linker, "/EXPORT:Vector2_SubP=_Vector2_SubP@12")
+#pragma comment(linker, "/EXPORT:Vector2_SubV=_Vector2_SubV@8")
 
 DLL_EXPORT void Vector2_Mul(Vector2* a, float o) {
 	a->mul(o);
@@ -202,6 +210,9 @@ DLL_EXPORT void Vector2_MulP(Vector2* a, float x, float y) {
 DLL_EXPORT void Vector2_MulV(Vector2* a, Vector2* b) {
 	a->mul(*b);
 }
+#pragma comment(linker, "/EXPORT:Vector2_Mul=_Vector2_Mul@8")
+#pragma comment(linker, "/EXPORT:Vector2_MulP=_Vector2_MulP@12")
+#pragma comment(linker, "/EXPORT:Vector2_MulV=_Vector2_MulV@8")
 
 DLL_EXPORT void Vector2_Div(Vector2* a, float o) {
 	a->div(o);
@@ -212,6 +223,9 @@ DLL_EXPORT void Vector2_DivP(Vector2* a, float x, float y) {
 DLL_EXPORT void Vector2_DivV(Vector2* a, Vector2* b) {
 	a->div(*b);
 }
+#pragma comment(linker, "/EXPORT:Vector2_Div=_Vector2_Div@8")
+#pragma comment(linker, "/EXPORT:Vector2_DivP=_Vector2_DivP@12")
+#pragma comment(linker, "/EXPORT:Vector2_DivV=_Vector2_DivV@8")
 
 DLL_EXPORT float Vector2_Length(Vector2* a) {
 	return (float)a->length();
@@ -222,6 +236,9 @@ DLL_EXPORT float Vector2_DistanceP(Vector2* a, float x, float y) {
 DLL_EXPORT float Vector2_DistanceV(Vector2* a, Vector2* b) {
 	return (float)a->distance(*b);
 }
+#pragma comment(linker, "/EXPORT:Vector2_Length=_Vector2_Length@4")
+#pragma comment(linker, "/EXPORT:Vector2_DistanceP=_Vector2_DistanceP@12")
+#pragma comment(linker, "/EXPORT:Vector2_DistanceV=_Vector2_DistanceV@8")
 
 DLL_EXPORT float Vector2_DotP(Vector2* a, float x, float y) {
 	return (float)a->dot(x, y);
@@ -232,6 +249,9 @@ DLL_EXPORT float Vector2_DotV(Vector2* a, Vector2* b) {
 DLL_EXPORT void Vector2_Normalize(Vector2* a) {
 	a->normalize();
 }
+#pragma comment(linker, "/EXPORT:Vector2_DotP=_Vector2_DotP@12")
+#pragma comment(linker, "/EXPORT:Vector2_DotV=_Vector2_DotV@8")
+#pragma comment(linker, "/EXPORT:Vector2_Normalize=_Vector2_Normalize@4")
 
 DLL_EXPORT void Vector2_Rotate(Vector2* a, float rotation) {
 	a->rotate(rotation);
@@ -242,6 +262,9 @@ DLL_EXPORT void Vector2_RotateAroundP(Vector2* a, float x, float y, float rotati
 DLL_EXPORT void Vector2_RotateAroundV(Vector2* a, Vector2* b, float rotation) {
 	a->rotateAround(*b, rotation);
 }
+#pragma comment(linker, "/EXPORT:Vector2_Rotate=_Vector2_Rotate@8")
+#pragma comment(linker, "/EXPORT:Vector2_RotateAroundP=_Vector2_RotateAroundP@16")
+#pragma comment(linker, "/EXPORT:Vector2_RotateAroundV=_Vector2_RotateAroundV@12")
 
 DLL_EXPORT float Vector2_DeltaRotation(Vector2* a) {
 	return (float)a->deltaRotation();
@@ -252,6 +275,9 @@ DLL_EXPORT float Vector2_DeltaRotationP(Vector2* a, float x, float y) {
 DLL_EXPORT float Vector2_DeltaRotationV(Vector2* a, Vector2* b) {
 	return (float)a->deltaRotation(*b);
 }
+#pragma comment(linker, "/EXPORT:Vector2_DeltaRotation=_Vector2_DeltaRotation@4")
+#pragma comment(linker, "/EXPORT:Vector2_DeltaRotationP=_Vector2_DeltaRotationP@12")
+#pragma comment(linker, "/EXPORT:Vector2_DeltaRotationV=_Vector2_DeltaRotationV@8")
 
 DLL_EXPORT char* Vector2_Serialize(Vector2* a) {
 	return a->serialize();
@@ -259,3 +285,5 @@ DLL_EXPORT char* Vector2_Serialize(Vector2* a) {
 DLL_EXPORT void Vector2_Deserialize(Vector2* a, char* o) {
 	a->deserialize(o);
 }
+#pragma comment(linker, "/EXPORT:Vector2_Serialize=_Vector2_Serialize@4")
+#pragma comment(linker, "/EXPORT:Vector2_Deserialize=_Vector2_Deserialize@8")

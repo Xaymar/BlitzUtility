@@ -1,4 +1,3 @@
-#pragma once
 #include "dllmain.h"
 
 #include <list>
@@ -8,7 +7,7 @@
 #include "Math\Vector3.h"
 #include "Math\Matrix3.h"
 #include "Utility\Display.h"
-#include "Utility\Indexer.h"
+#include "Utility\IndexerV1.h"
 #include "Utility\WindowMessageHandler.h"
 
 bool WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved) {

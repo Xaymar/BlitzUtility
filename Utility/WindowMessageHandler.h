@@ -21,11 +21,5 @@ void WindowMessageHandler_OnProcessAttach();
 void WindowMessageHandler_OnProcessDetach();
 
 LRESULT CALLBACK WindowMessageHandler_Procedure(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
-
-extern "C" {
-	DLL_EXPORT void WindowMessageHandler_Install(HWND hwnd);
-	DLL_EXPORT void WindowMessageHandler_Uninstall(HWND hwnd);
-	DLL_EXPORT int WindowMessageHandler_Message_Resize(HWND hwnd, LPPOINT point);
-	DLL_EXPORT int WindowMessageHandler_Message_Destroy(HWND hwnd);
-	DLL_EXPORT int WindowMessageHandler_Message_Close(HWND hwnd);
-}
+DLL_EXPORT void WindowMessageHandler_Install(HWND hwnd);
+DLL_EXPORT void WindowMessageHandler_Uninstall(HWND hwnd);

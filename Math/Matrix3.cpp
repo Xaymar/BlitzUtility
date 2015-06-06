@@ -1,6 +1,4 @@
-#pragma once
 #include "Matrix3.h"
-
 
 void Matrix3::set(Matrix3 &M)
 {

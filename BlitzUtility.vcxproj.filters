@@ -43,14 +43,17 @@
     <ClCompile Include="Utility\Display.cpp">
       <Filter>Source Files\Utility</Filter>
     </ClCompile>
-    <ClCompile Include="Utility\Indexer.cpp">
-      <Filter>Source Files\Utility</Filter>
-    </ClCompile>
     <ClCompile Include="Utility\WindowMessageHandler.cpp">
       <Filter>Source Files\Utility</Filter>
     </ClCompile>
     <ClCompile Include="Database\SQLite\sqlite3.c">
       <Filter>Source Files\Database\SQLite</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\IndexerV1.cpp">
+      <Filter>Source Files\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\IndexerV2.cpp">
+      <Filter>Source Files\Utility</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -78,10 +81,13 @@
     <ClInclude Include="Utility\Display.h">
       <Filter>Source Files\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="Utility\Indexer.h">
+    <ClInclude Include="Utility\WindowMessageHandler.h">
       <Filter>Source Files\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="Utility\WindowMessageHandler.h">
+    <ClInclude Include="Utility\IndexerV1.h">
+      <Filter>Source Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\IndexerV2.h">
       <Filter>Source Files\Utility</Filter>
     </ClInclude>
   </ItemGroup>
