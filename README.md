@@ -123,21 +123,21 @@ Retrieve information about displays from Windows.
 * BU_DisplayEnumerator_Count%(DisplayEnumerator%)
 * BU_DisplayEnumerator_Retrieve%(DisplayEnumerator%, index%, Rect*)
 
-### Indexer V2
+### Indexer V1
 Fast array-based index generation. Uses a constant chunk of memory.
 
-* Indexer% = BU_IndexerV2_Create%()
-* BU_IndexerV2_Destroy(Indexer%)
-* BU_IndexerV2_Mark(Indexer%, Used%)
-* BU_IndexerV2_MarkFree(Indexer%)
-* BU_IndexerV2_MarkUsed(Indexer%)
-* Result% = BU_IndexerV2_Is%(Indexer%, Used%)
-* Result% = BU_IndexerV2_IsFree%(Indexer%)
-* Result% = BU_IndexerV2_IsUsed%(Indexer%)
-* Index% = BU_IndexerV2_Get%(Indexer%)
-* Amount% = BU_IndexerV2_Count%(Indexer%, Used%)
-* Amount% = BU_IndexerV2_CountFree%(Indexer%)
-* Amount% = BU_IndexerV2_CountUsed%(Indexer%)
+* Indexer% = BU_IndexerV1_Create%()
+* BU_IndexerV1_Destroy(Indexer%)
+* BU_IndexerV1_Mark(Indexer%, Used%)
+* BU_IndexerV1_MarkFree(Indexer%)
+* BU_IndexerV1_MarkUsed(Indexer%)
+* Result% = BU_IndexerV1_Is%(Indexer%, Used%)
+* Result% = BU_IndexerV1_IsFree%(Indexer%)
+* Result% = BU_IndexerV1_IsUsed%(Indexer%)
+* Index% = BU_IndexerV1_Get%(Indexer%)
+* Amount% = BU_IndexerV1_Count%(Indexer%, Used%)
+* Amount% = BU_IndexerV1_CountFree%(Indexer%)
+* Amount% = BU_IndexerV1_CountUsed%(Indexer%)
 
 ### Indexer V2
 Fast vector-based index generation, uses a dynamic amount of memory.
