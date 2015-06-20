@@ -20,15 +20,42 @@
 #include "dllmain.h"
 
 // 67108864 = 2 ^ 32 / 64
-#define INDEXER_INDEXES 67108864
+#define INDEXER_INDEXES 67108864 //pow(2,32) / 64 
 
 /** Indexer structure helps with getting unique, unused Indexes (Ids).
   * Doing this natively would be too slow, so I'm using a DLL for this.
   */
 struct IndexerV1 {
-	uint64_t indexes[67108864];
+	uint64_t indexes[INDEXER_INDEXES];
 	uint32_t lastAssignedIndex;
 
-	unsigned int GetFreeIndex();
-	void MarkFreeIndex(int index);
+	void mark(uint32_t index, bool used);
+	bool is(uint32_t index, bool used);
+	uint32_t get();
+	uint32_t count(bool used);
 };
+
+DLL_METHOD IndexerV1* DLL_CALL BU_IndexerV1_Create();
+#pragma comment(linker, "/EXPORT:BU_IndexerV1_Create=_BU_IndexerV1_Create@0")
+DLL_METHOD void DLL_CALL BU_IndexerV1_Destroy(IndexerV1* indexer);
+#pragma comment(linker, "/EXPORT:BU_IndexerV1_Destroy=_BU_IndexerV1_Destroy@4")
+DLL_METHOD void DLL_CALL BU_IndexerV1_Mark(IndexerV1* indexer, uint32_t used, uint32_t index);
+#pragma comment(linker, "/EXPORT:BU_IndexerV1_Mark=_BU_IndexerV1_Mark@12")
+DLL_METHOD void DLL_CALL BU_IndexerV1_MarkFree(IndexerV1* indexer, uint32_t index);
+#pragma comment(linker, "/EXPORT:BU_IndexerV1_MarkFree=_BU_IndexerV1_MarkFree@8")
+DLL_METHOD void DLL_CALL BU_IndexerV1_MarkUsed(IndexerV1* indexer, uint32_t index);
+#pragma comment(linker, "/EXPORT:BU_IndexerV1_MarkUsed=_BU_IndexerV1_MarkUsed@8")
+DLL_METHOD uint32_t DLL_CALL BU_IndexerV1_Is(IndexerV1* indexer, uint32_t index, uint32_t used);
+#pragma comment(linker, "/EXPORT:BU_IndexerV1_Is=_BU_IndexerV1_Is@12")
+DLL_METHOD uint32_t DLL_CALL BU_IndexerV1_IsFree(IndexerV1* indexer, uint32_t index);
+#pragma comment(linker, "/EXPORT:BU_IndexerV1_IsFree=_BU_IndexerV1_IsFree@8")
+DLL_METHOD uint32_t DLL_CALL BU_IndexerV1_IsUsed(IndexerV1* indexer, uint32_t index);
+#pragma comment(linker, "/EXPORT:BU_IndexerV1_IsUsed=_BU_IndexerV1_IsUsed@8")
+DLL_METHOD uint32_t DLL_CALL BU_IndexerV1_Get(IndexerV1* indexer);
+#pragma comment(linker, "/EXPORT:BU_IndexerV1_Get=_BU_IndexerV1_Get@4")
+DLL_METHOD uint32_t DLL_CALL BU_IndexerV1_Count(IndexerV1* indexer, uint32_t used);
+#pragma comment(linker, "/EXPORT:BU_IndexerV1_Count=_BU_IndexerV1_Count@8")
+DLL_METHOD uint32_t DLL_CALL BU_IndexerV1_CountFree(IndexerV1* indexer);
+#pragma comment(linker, "/EXPORT:BU_IndexerV1_CountFree=_BU_IndexerV1_CountFree@4")
+DLL_METHOD uint32_t DLL_CALL BU_IndexerV1_CountUsed(IndexerV1* indexer);
+#pragma comment(linker, "/EXPORT:BU_IndexerV1_CountUsed=_BU_IndexerV1_CountUsed@4")

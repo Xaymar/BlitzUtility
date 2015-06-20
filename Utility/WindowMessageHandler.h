@@ -33,9 +33,17 @@ struct WindowUserData {
 };
 
 
-void WindowMessageHandler_OnProcessAttach();
-void WindowMessageHandler_OnProcessDetach();
+void BU_WindowMessageHandler_OnProcessAttach();
+void BU_WindowMessageHandler_OnProcessDetach();
+LRESULT CALLBACK BU_WindowMessageHandler_Procedure(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
-LRESULT CALLBACK WindowMessageHandler_Procedure(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
-DLL_EXPORT void WindowMessageHandler_Install(HWND hwnd);
-DLL_EXPORT void WindowMessageHandler_Uninstall(HWND hwnd);
+DLL_METHOD void DLL_CALL BU_WindowMessageHandler_Install(HWND hwnd);
+#pragma comment(linker, "/EXPORT:BU_WindowMessageHandler_Install=_BU_WindowMessageHandler_Install@4")
+DLL_METHOD void DLL_CALL BU_WindowMessageHandler_Uninstall(HWND hwnd);
+#pragma comment(linker, "/EXPORT:BU_WindowMessageHandler_Uninstall=_BU_WindowMessageHandler_Uninstall@4")
+DLL_METHOD uint32_t DLL_CALL BU_WindowMessageHandler_Message_Resize(HWND hwnd, LPPOINT point);
+#pragma comment(linker, "/EXPORT:BU_WindowMessageHandler_Message_Resize=_BU_WindowMessageHandler_Message_Resize@8")
+DLL_METHOD uint32_t DLL_CALL BU_WindowMessageHandler_Message_Destroy(HWND hwnd);
+#pragma comment(linker, "/EXPORT:BU_WindowMessageHandler_Message_Destroy=_BU_WindowMessageHandler_Message_Destroy@4")
+DLL_METHOD uint32_t DLL_CALL BU_WindowMessageHandler_Message_Close(HWND hwnd);
+#pragma comment(linker, "/EXPORT:BU_WindowMessageHandler_Message_Close=_BU_WindowMessageHandler_Message_Close@4")

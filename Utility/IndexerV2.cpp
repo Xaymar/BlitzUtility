@@ -20,82 +20,100 @@ IndexerV2::IndexerV2() {
 	this->range.reserve(32);
 }
 
-
 IndexerV2::~IndexerV2() {
 	this->range.clear();
 }
 
-uint32_t IndexerV2::GetIndex() {
-	uint32_t index = 0;
-
+void IndexerV2::mark(uint32_t index, bool used) {
 	if (this->range.size() == 0) {
-		this->range.push_back(IndexerV2Range(0, 0));
+		if (used == true)
+			this->range.push_back(IndexerV2Range(index, index));
 	} else {
-		auto range = this->range[0];
-
-		if (range.min > 0) {
-			index = --range.min;
-		} else {
-			index = ++range.max;
-		}
-
-		// Combine the next and current element if we need to.
-		if (this->range.size() > 1) {
-			auto rangeNext = this->range[1];
-			
-			if (rangeNext.min == (index + 1)) {
-				uint32_t newMin, newMax;
-				newMin = range.min;
-				newMax = rangeNext.max;
-
-				this->range.erase(this->range.begin(), this->range.begin() + 1);
-				this->range.insert(this->range.begin(), IndexerV2Range(newMin, newMax));
+		auto iter = this->range.begin();
+		for (auto iter = this->range.begin(); iter != this->range.end(); iter++) {
+			if (used) {
+				if ((index + 1) == iter->min) {
+					iter->min--;
+					break;
+				} else if ((index - 1) == iter->max) {
+					iter->max++;
+					if ((iter + 1) != this->range.end() && iter->max == (iter + 1)->min) {
+						(iter + 1)->min = iter->min;
+						this->range.erase(iter);
+					}
+					break;
+				} else if (index < iter->min) {
+					this->range.insert(iter, IndexerV2Range(index, index));
+					break;
+				} 
+			} else {
+				if (index >= iter->min && index <= iter->max) {
+					this->range.insert(iter - 1, IndexerV2Range(iter->min, index - 1));
+					this->range.insert(iter + 1, IndexerV2Range(index + 1, iter->max));
+					this->range.erase(iter); break;
+				} else if (index == iter->min) {
+					iter->min++;
+					if (iter->min == iter->max)
+						this->range.erase(iter);
+					break;
+				} else if (index == iter->max) {
+					iter->max--;
+					if (iter->min == iter->max)
+						this->range.erase(iter);
+					
+					break;
+				}
 			}
 		}
 	}
-
-	return index;
 }
 
-void IndexerV2::MarkIndex(uint32_t index) {
-	IndexerV2Range* rangePtr;
-	uint32_t rangePtrPos;
-	
-	uint32_t rangeSize = this->range.size();
-	for (uint32_t rangePos = 0; rangePos < rangeSize; rangePos++) {
-		auto range = this->range[rangePos];
-
-		if (index >= range.min && index <= range.max) {
-			rangePtr = &range;
-			rangePtrPos = rangePos;
+bool IndexerV2::is(uint32_t index, bool used) {
+	bool isUsed = false;
+	for (auto iter = this->range.begin(); iter != this->range.end(); iter++) {
+		if (index >= iter->min && index <= iter->max) {
+			isUsed = true;
 			break;
 		}
 	}
-
-	// Temporarily store the values needed for swapping.
-	uint32_t leftMin, leftMax, rightMin, rightMax;
-	leftMin = rangePtr->min; leftMax = index - 1;
-	rightMin = index + 1; rightMax = rangePtr->max;
-
-	// Due to us doing this instead of push_back, our vector is always sorted.
-	auto rangeIter = this->range.begin() + rangePtrPos;
-	this->range.erase(rangeIter);
-	this->range.insert(rangeIter, IndexerV2Range(leftMin, leftMax));
-	this->range.insert(rangeIter + 1, IndexerV2Range(rightMin, rightMax));
+	return (isUsed == used);
 }
 
-bool IndexerV2::IsFree(uint32_t index) {
-	uint32_t rangeSize = this->range.size();
-	for (uint32_t rangePos = 0; rangePos < rangeSize; rangePos++) {
-		auto range = this->range[rangePos];
-		if (index >= range.min && index <= range.max)
-			return false;
+uint32_t IndexerV2::get() {
+	if (this->range.size() == 0) {
+		this->range.push_back(IndexerV2Range(0, 0));
+		return 0;
 	}
-	return true;
+
+	// We only need to check the first element to get a new free index.
+	std::vector<IndexerV2Range>::iterator iter = this->range.begin();
+	if (iter->min > 0) {
+		return --iter->min;
+	} else {
+		if (iter->max == UINT32_MAX)
+			return UINT32_MAX;
+
+		uint32_t index = ++iter->max;
+
+		// Check if we can combine this element with the next one.
+		std::vector<IndexerV2Range>::iterator iterN = this->range.begin() + 1;
+		if ((iterN != this->range.end()) && iterN->min == iter->max) {
+			iter->max = iterN->max;
+			this->range.erase(iterN);
+		}
+
+		return index;
+	}
+
+	return UINT32_MAX;
 }
 
-bool IndexerV2::IsUsed(uint32_t index) {
-	return !IsFree(index);
+uint32_t IndexerV2::count(bool used) {
+	uint32_t amount = 0;
+	for (auto iter = this->range.begin(); iter != this->range.end(); iter++) {
+		amount += iter->max - iter->min;
+	}
+	return (used ? UINT32_MAX - amount : amount);
 }
 
 IndexerV2::IndexerV2Range::IndexerV2Range(uint32_t min, uint32_t max) {
@@ -103,32 +121,51 @@ IndexerV2::IndexerV2Range::IndexerV2Range(uint32_t min, uint32_t max) {
 	this->max = max;
 }
 
-DLL_EXPORT void* IndexerV2_Create() {
-	IndexerV2* indexerPtr = new IndexerV2();
-	return indexerPtr;
-}
-#pragma comment(linker, "/EXPORT:IndexerV2_Create=_IndexerV2_Create@0")
 
-DLL_EXPORT void IndexerV2_Destroy(uint32_t indexerIntPtr) {
-	IndexerV2* indexerPtr = (IndexerV2*)indexerIntPtr;
-	delete indexerPtr;
+DLL_METHOD IndexerV2* DLL_CALL BU_IndexerV2_Create() {
+	return new IndexerV2();
 }
-#pragma comment(linker, "/EXPORT:IndexerV2_Destroy=_IndexerV2_Destroy@4")
 
-DLL_EXPORT uint32_t IndexerV2_GetIndex(uint32_t indexerIntPtr) {
-	IndexerV2* indexerPtr = (IndexerV2*)indexerIntPtr;
-	return indexerPtr->GetIndex();
+DLL_METHOD void DLL_CALL BU_IndexerV2_Destroy(IndexerV2* indexer) {
+	delete indexer;
 }
-#pragma comment(linker, "/EXPORT:IndexerV2_GetIndex=_IndexerV2_GetIndex@4")
 
-DLL_EXPORT uint32_t IndexerV2_IsFree(uint32_t indexerIntPtr, uint32_t index) {
-	IndexerV2* indexerPtr = (IndexerV2*)indexerIntPtr;
-	return indexerPtr->IsFree(index);
+DLL_METHOD void DLL_CALL BU_IndexerV2_Mark(IndexerV2* indexer, uint32_t used, uint32_t index) {
+	indexer->mark(index, used != 0);
 }
-#pragma comment(linker, "/EXPORT:IndexerV2_IsFree=_IndexerV2_IsFree@8")
 
-DLL_EXPORT uint32_t IndexerV2_IsUsed(uint32_t indexerIntPtr, uint32_t index) {
-	IndexerV2* indexerPtr = (IndexerV2*)indexerIntPtr;
-	return indexerPtr->IsUsed(index);
+DLL_METHOD void DLL_CALL BU_IndexerV2_MarkFree(IndexerV2* indexer, uint32_t index) {
+	indexer->mark(index, false);
 }
-#pragma comment(linker, "/EXPORT:IndexerV2_IsUsed=_IndexerV2_IsUsed@8")
+
+DLL_METHOD void DLL_CALL BU_IndexerV2_MarkUsed(IndexerV2* indexer, uint32_t index) {
+	indexer->mark(index, true);
+}
+
+DLL_METHOD uint32_t DLL_CALL BU_IndexerV2_Is(IndexerV2* indexer, uint32_t index, uint32_t used) {
+	return indexer->is(index, used != 0);
+}
+
+DLL_METHOD uint32_t DLL_CALL BU_IndexerV2_IsFree(IndexerV2* indexer, uint32_t index) {
+	return indexer->is(index, false);
+}
+
+DLL_METHOD uint32_t DLL_CALL BU_IndexerV2_IsUsed(IndexerV2* indexer, uint32_t index) {
+	return indexer->is(index, true);
+}
+
+DLL_METHOD uint32_t DLL_CALL BU_IndexerV2_Get(IndexerV2* indexer) {
+	return indexer->get();
+}
+
+DLL_METHOD uint32_t DLL_CALL BU_IndexerV2_Count(IndexerV2* indexer, uint32_t used) {
+	return indexer->count(used != 0);
+}
+
+DLL_METHOD uint32_t DLL_CALL BU_IndexerV2_CountFree(IndexerV2* indexer) {
+	return indexer->count(false);
+}
+
+DLL_METHOD uint32_t DLL_CALL BU_IndexerV2_CountUsed(IndexerV2* indexer) {
+	return indexer->count(true);
+}

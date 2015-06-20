@@ -23,8 +23,42 @@
 // Memory Management
 #include <memory>
 
+// Strings
+#include <string>
+#include <sstream>
+#include <iomanip>
+
 // Platform specific: Windows
 #include <windows.h>
 
 // Macros
-#define DLL_EXPORT extern "C" //__declspec(dllexport)
+#ifndef IMPORT
+	#define DLL_METHOD extern "C" //__declspec(dllexport)
+#else
+	#define DLL_METHOD extern "c" __declspec(dllimport)
+#endif
+#define DLL_CALL __stdcall
+
+//Templates
+template< typename T >
+std::string int_to_hex(T i) {
+	std::stringstream stream;
+	stream
+		<< std::setfill('0')
+		<< std::setw(sizeof(T) * 2)
+		<< std::hex
+		<< i;
+	return stream.str();
+}
+
+template< typename T >
+T hex_to_int(std::string t) {
+	T x;
+	std::stringstream stream;
+	stream
+		<< std::hex
+		<< t;
+	stream
+		>> x;
+	return x;
+}

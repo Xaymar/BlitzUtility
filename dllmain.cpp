@@ -14,47 +14,19 @@
 //	You should have received a copy of the GNU Lesser General Public License
 //	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "dllmain.h"
-
+#pragma once
 #include <list>
-#include "Containers\BlitzList.h"
+#include "dllmain.h"
 #include "Database\SQLite\SQLite.h"
-#include "Math\Vector2.h"
-#include "Math\Vector3.h"
-#include "Math\Matrix3.h"
-#include "Utility\Display.h"
-#include "Utility\IndexerV1.h"
 #include "Utility\WindowMessageHandler.h"
 
 bool WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved) {
 	switch (fdwReason) {
 		case DLL_PROCESS_ATTACH:
-			// Containers
-			BlitzList_OnProcessAttach();
-
-			// Math
-
-			// Database
-			SQLite3_OnProcessAttach();
-
-			// Utility
-			Display_OnProcessAttach();
-			WindowMessageHandler_OnProcessAttach();
-
+			BU_WindowMessageHandler_OnProcessAttach();
 			break;
 		case DLL_PROCESS_DETACH:
-			// Containers
-			BlitzList_OnProcessDetach();
-
-			// Math
-
-			// Database
-			SQLite3_OnProcessDetach();
-
-			// Utility
-			Display_OnProcessDetach();
-			WindowMessageHandler_OnProcessDetach();
-
+			BU_WindowMessageHandler_OnProcessDetach();
 			break;
 	}
 	return TRUE;

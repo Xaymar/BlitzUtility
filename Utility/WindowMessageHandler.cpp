@@ -19,20 +19,20 @@
 
 std::list<WindowUserData>* WindowMessageHandler_List;
 
-void WindowMessageHandler_OnProcessAttach() {
+void BU_WindowMessageHandler_OnProcessAttach() {
 	WindowMessageHandler_List = new std::list<WindowUserData>();
 }
 
-void WindowMessageHandler_OnProcessDetach() {
+void BU_WindowMessageHandler_OnProcessDetach() {
 	for (auto iterator = WindowMessageHandler_List->begin(), end = WindowMessageHandler_List->end(); iterator != end; iterator++) {
-		WindowMessageHandler_Uninstall(iterator->hwnd);
+		BU_WindowMessageHandler_Uninstall(iterator->hwnd);
 	}
 
 	WindowMessageHandler_List->clear();
 	delete WindowMessageHandler_List;
 }
 
-LRESULT CALLBACK WindowMessageHandler_Procedure(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
+LRESULT CALLBACK BU_WindowMessageHandler_Procedure(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 	WindowUserData* UserData = (WindowUserData*)GetWindowLong(hwnd, GWL_USERDATA);
 	if (UserData) {
 		switch (uMsg) {
@@ -60,57 +60,50 @@ LRESULT CALLBACK WindowMessageHandler_Procedure(HWND hwnd, UINT uMsg, WPARAM wPa
 	}
 }
 
-DLL_EXPORT void WindowMessageHandler_Install(HWND hwnd) {
-	if (hwnd) {
-		WindowUserData* UserData = new WindowUserData;
-		ZeroMemory(UserData, sizeof(UserData));
-		UserData->oWindowProcedure = (WNDPROC)SetWindowLong(hwnd, GWL_WNDPROC, (LONG)&WindowMessageHandler_Procedure);
-		UserData->oUserData = SetWindowLong(hwnd, GWL_USERDATA, (LONG)UserData);
+DLL_METHOD void DLL_CALL BU_WindowMessageHandler_Install(HWND hwnd)
+{
+	WindowUserData* UserData = new WindowUserData;
+	ZeroMemory(UserData, sizeof(UserData));
+	UserData->oWindowProcedure = (WNDPROC)SetWindowLong(hwnd, GWL_WNDPROC, (LONG)&BU_WindowMessageHandler_Procedure);
+	UserData->oUserData = SetWindowLong(hwnd, GWL_USERDATA, (LONG)UserData);
+}
+
+DLL_METHOD void DLL_CALL BU_WindowMessageHandler_Uninstall(HWND hwnd)
+{
+	WindowUserData* UserData = (WindowUserData*)GetWindowLong(hwnd, GWL_USERDATA);
+	if (UserData) {
+		SetWindowLong(hwnd, GWL_USERDATA, UserData->oUserData);
+		SetWindowLong(hwnd, GWL_WNDPROC, (LONG)(UserData->oWindowProcedure));
+		delete UserData;
 	}
 }
-#pragma comment(linker, "/EXPORT:WindowMessageHandler_Install=_WindowMessageHandler_Install@4")
 
-DLL_EXPORT void WindowMessageHandler_Uninstall(HWND hwnd) {
-	if (hwnd) {
-		WindowUserData* UserData = (WindowUserData*)GetWindowLong(hwnd, GWL_USERDATA);
-		if (UserData) {
-			SetWindowLong(hwnd, GWL_USERDATA, UserData->oUserData);
-			SetWindowLong(hwnd, GWL_WNDPROC, (LONG)(UserData->oWindowProcedure));
-			delete UserData;
-		}
+DLL_METHOD uint32_t DLL_CALL BU_WindowMessageHandler_Message_Resize(HWND hwnd, LPPOINT point)
+{
+	WindowUserData* UserData = (WindowUserData*)GetWindowLong(hwnd, GWL_USERDATA);
+	if (UserData) {
+		int toReturn = UserData->WindowWasResized;
+		point->x = UserData->WindowClientWidth;
+		point->y = UserData->WindowClientHeight;
+		UserData->WindowWasResized = false;
+		return toReturn;
 	}
+	return FALSE;
 }
-#pragma comment(linker, "/EXPORT:WindowMessageHandler_Uninstall=_WindowMessageHandler_Uninstall@4")
 
-DLL_EXPORT int WindowMessageHandler_Message_Resize(HWND hwnd, LPPOINT point) {
-	if (hwnd) {
-		WindowUserData* UserData = (WindowUserData*)GetWindowLong(hwnd, GWL_USERDATA);
-		if (UserData) {
-			int toReturn = UserData->WindowWasResized;
-			point->x = UserData->WindowClientWidth;
-			point->y = UserData->WindowClientHeight;
-			UserData->WindowWasResized = false;
-			return toReturn;
-		}
-	}
-	return 0;
-}
-#pragma comment(linker, "/EXPORT:WindowMessageHandler_Message_Resize=_WindowMessageHandler_Message_Resize@8")
-
-DLL_EXPORT int WindowMessageHandler_Message_Destroy(HWND hwnd) {
-	if (hwnd) {
-		WindowUserData* UserData = (WindowUserData*)GetWindowLong(hwnd, GWL_USERDATA);
-		if (UserData) {
-			int toReturn = UserData->DestroyCount;
-			UserData->DestroyCount = 0;
-			return toReturn;
-		}
+DLL_METHOD uint32_t DLL_CALL BU_WindowMessageHandler_Message_Destroy(HWND hwnd)
+{
+	WindowUserData* UserData = (WindowUserData*)GetWindowLong(hwnd, GWL_USERDATA);
+	if (UserData) {
+		int toReturn = UserData->DestroyCount;
+		UserData->DestroyCount = 0;
+		return toReturn;
 	}
 	return 0;
 }
-#pragma comment(linker, "/EXPORT:WindowMessageHandler_Message_Destroy=_WindowMessageHandler_Message_Destroy@4")
 
-DLL_EXPORT int WindowMessageHandler_Message_Close(HWND hwnd) {
+DLL_METHOD uint32_t DLL_CALL BU_WindowMessageHandler_Message_Close(HWND hwnd)
+{
 	if (hwnd) {
 		WindowUserData* UserData = (WindowUserData*)GetWindowLong(hwnd, GWL_USERDATA);
 		if (UserData) {
@@ -121,5 +114,5 @@ DLL_EXPORT int WindowMessageHandler_Message_Close(HWND hwnd) {
 	}
 	return 0;
 }
-#pragma comment(linker, "/EXPORT:WindowMessageHandler_Message_Close=_WindowMessageHandler_Message_Close@4")
+
 

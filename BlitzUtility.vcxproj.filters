@@ -8,9 +8,6 @@
     <Filter Include="Source Files\Utility">
       <UniqueIdentifier>{48292af9-63a5-40ae-a447-ad7cecfddd8a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Containers">
-      <UniqueIdentifier>{ff6bcb4d-9140-40a9-80dd-3698b63bd1c1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Database">
       <UniqueIdentifier>{4b84c339-4e83-489c-b421-2cf9fd9e72d1}</UniqueIdentifier>
     </Filter>
@@ -23,28 +20,22 @@
     <Filter Include="Blitz Files">
       <UniqueIdentifier>{e8e48b8c-14c2-40b5-b48d-d9b55fe6852d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Container">
+      <UniqueIdentifier>{ff6bcb4d-9140-40a9-80dd-3698b63bd1c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Type">
+      <UniqueIdentifier>{605f2cca-0949-4af8-ab67-7042309a2abc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Libraries">
+      <UniqueIdentifier>{2b65f925-151d-4073-a06e-8d7d4603ef16}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Containers\BlitzList.cpp">
-      <Filter>Source Files\Containers</Filter>
-    </ClCompile>
     <ClCompile Include="Database\SQLite\SQLite.cpp">
       <Filter>Source Files\Database\SQLite</Filter>
-    </ClCompile>
-    <ClCompile Include="Math\Matrix3.cpp">
-      <Filter>Source Files\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="Math\Vector2.cpp">
-      <Filter>Source Files\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="Math\Vector3.cpp">
-      <Filter>Source Files\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="Utility\Display.cpp">
-      <Filter>Source Files\Utility</Filter>
     </ClCompile>
     <ClCompile Include="Utility\WindowMessageHandler.cpp">
       <Filter>Source Files\Utility</Filter>
@@ -58,31 +49,43 @@
     <ClCompile Include="Utility\IndexerV2.cpp">
       <Filter>Source Files\Utility</Filter>
     </ClCompile>
+    <ClCompile Include="Type\Double.cpp">
+      <Filter>Source Files\Type</Filter>
+    </ClCompile>
+    <ClCompile Include="Type\LongLong.cpp">
+      <Filter>Source Files\Type</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\MassOp.cpp">
+      <Filter>Source Files\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Container\List.cpp">
+      <Filter>Source Files\Container</Filter>
+    </ClCompile>
+    <ClCompile Include="Container\TypeList.cpp">
+      <Filter>Source Files\Container</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\DisplayEnumerator.cpp">
+      <Filter>Source Files\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\BVector3.cpp">
+      <Filter>Source Files\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\FVector2.cpp">
+      <Filter>Source Files\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Libraries\BlitzPointer.cpp">
+      <Filter>Source Files\Libraries</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dllmain.h">
       <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Containers\BlitzList.h">
-      <Filter>Source Files\Containers</Filter>
     </ClInclude>
     <ClInclude Include="Database\SQLite\SQLite.h">
       <Filter>Source Files\Database\SQLite</Filter>
     </ClInclude>
     <ClInclude Include="Database\SQLite\sqlite3.h">
       <Filter>Source Files\Database\SQLite</Filter>
-    </ClInclude>
-    <ClInclude Include="Math\Matrix3.h">
-      <Filter>Source Files\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Math\Vector2.h">
-      <Filter>Source Files\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Math\Vector3.h">
-      <Filter>Source Files\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Utility\Display.h">
-      <Filter>Source Files\Utility</Filter>
     </ClInclude>
     <ClInclude Include="Utility\WindowMessageHandler.h">
       <Filter>Source Files\Utility</Filter>
@@ -93,6 +96,33 @@
     <ClInclude Include="Utility\IndexerV2.h">
       <Filter>Source Files\Utility</Filter>
     </ClInclude>
+    <ClInclude Include="Type\Double.h">
+      <Filter>Source Files\Type</Filter>
+    </ClInclude>
+    <ClInclude Include="Type\LongLong.h">
+      <Filter>Source Files\Type</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\MassOp.h">
+      <Filter>Source Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Container\List.h">
+      <Filter>Source Files\Container</Filter>
+    </ClInclude>
+    <ClInclude Include="Container\TypeList.h">
+      <Filter>Source Files\Container</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\DisplayEnumerator.h">
+      <Filter>Source Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\BVector3.h">
+      <Filter>Source Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\FVector2.h">
+      <Filter>Source Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\BlitzPointer.h">
+      <Filter>Source Files\Libraries</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="BlitzUtility.bb">
@@ -101,5 +131,7 @@
     <None Include="BlitzUtility.decls">
       <Filter>Blitz Files</Filter>
     </None>
+    <None Include="LICENSE" />
+    <None Include="LICENSE.lesser" />
   </ItemGroup>
 </Project>

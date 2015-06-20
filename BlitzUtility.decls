@@ -15,218 +15,157 @@
 ;	along with this program.  If not, see <http:;www.gnu.org/licenses/>.
 
 .lib "BlitzUtility.dll"
-; Math -------------------------------------------------------------------------
-; -- 2D Vector
-Vector2_Set(vector*, value#)															: "Vector2_Set"
-Vector2_SetP(vector*, x#, y#)															: "Vector2_SetP"
-Vector2_SetV(vector*, other*)															: "Vector2_SetV"
-Vector2_Add(vector*, value#)															: "Vector2_Add"
-Vector2_AddP(vector*, x#, y#)															: "Vector2_AddP"
-Vector2_AddV(vector*, other*)															: "Vector2_AddV"
-Vector2_Sub(vector*, value#)															: "Vector2_Sub"
-Vector2_SubP(vector*, x#, y#)															: "Vector2_SubP"
-Vector2_SubV(vector*, other*)															: "Vector2_SubV"
-Vector2_Mul(vector*, value#)															: "Vector2_Mul"
-Vector2_MulP(vector*, x#, y#)															: "Vector2_MulP"
-Vector2_MulV(vector*, other*)															: "Vector2_MulV"
-Vector2_Div(vector*, value#)															: "Vector2_Div"
-Vector2_DivP(vector*, x#, y#)															: "Vector2_DivP"
-Vector2_DivV(vector*, other*)															: "Vector2_DivV"
-Vector2_Length#(vector*)																: "Vector2_Length"
-Vector2_DistanceP#(vector*, x#, y#)														: "Vector2_DistanceP"
-Vector2_DistanceV#(vector*, other*)														: "Vector2_DistanceV"
-Vector2_DotP#(vector*, x#, y#)															: "Vector2_DotP"
-Vector2_DotV#(vector*, other*)															: "Vector2_DotV"
-Vector2_Normalize(vector*)																: "Vector2_Normalize"
-Vector2_Rotate(vector*, rotation#)														: "Vector2_Rotate"
-Vector2_RotateAroundP(vector*, x#, y#, rotation#)										: "Vector2_RotateAroundP"
-Vector2_RotateAroundV(vector*, other*, rotation#)										: "Vector2_RotateAroundV"
-Vector2_DeltaRotation#(vector*)															: "Vector2_DeltaRotation"
-Vector2_DeltaRotationP#(vector*, x#, y#)												: "Vector2_DeltaRotationP"
-Vector2_DeltaRotationV#(vector*, other*)												: "Vector2_DeltaRotationV"
-Vector2_Serialize$(vector*)																: "Vector2_Serialize"
-Vector2_Deserialize(vector*, serial$)													: "Vector2_Deserialize"
-; -- 3D Vector
-Vector3_Set(vector*, value#)															: "Vector3_Set"
-Vector3_SetP(vector*, x#, y#, z#)														: "Vector3_SetP"
-Vector3_SetV(vector*, other*)															: "Vector3_SetV"
-Vector3_Add(vector*, value#)															: "Vector3_Add"
-Vector3_AddP(vector*, x#, y#, z#)														: "Vector3_AddP"
-Vector3_AddV(vector*, other*)															: "Vector3_AddV"
-Vector3_Sub(vector*, value#)															: "Vector3_Sub"
-Vector3_SubP(vector*, x#, y#, z#)														: "Vector3_SubP"
-Vector3_SubV(vector*, other*)															: "Vector3_SubV"
-Vector3_Mul(vector*, value#)															: "Vector3_Mul"
-Vector3_MulP(vector*, x#, y#, z#)														: "Vector3_MulP"
-Vector3_MulV(vector*, other*)															: "Vector3_MulV"
-Vector3_Div(vector*, value#)															: "Vector3_Div"
-Vector3_DivP(vector*, x#, y#, z#)														: "Vector3_DivP"
-Vector3_DivV(vector*, other*)															: "Vector3_DivV"
-Vector3_Length#(vector*)																: "Vector3_Length"
-Vector3_DistanceP#(vector*, x#, y#, z#)													: "Vector3_DistanceP"
-Vector3_DistanceV#(vector*, other*)														: "Vector3_DistanceV"
-Vector3_DotP#(vector*, x#, y#, z#)														: "Vector3_DotP"
-Vector3_DotV#(vector*, other*)															: "Vector3_DotV"
-Vector3_CrossP(vector*, x#, y#, z#, out*)												: "Vector3_CrossP"
-Vector3_CrossV(vector*, other*, out*)													: "Vector3_CrossV"
-Vector3_Normalize(vector*)																: "Vector3_Normalize"
-Vector3_Rotate(vector*, pitch#, yaw#, roll#)											: "Vector3_Rotate"
-Vector3_RotateAroundP(vector*, x#, y#, z#, pitch#, yaw#, roll#)							: "Vector3_RotateAroundP"
-Vector3_RotateAroundV(vector*, other*, pitch#, yaw#, roll#)								: "Vector3_RotateAroundV"
-Vector3_DeltaPitch#(vector*)															: "Vector3_DeltaPitch"
-Vector3_DeltaPitchP#(vector*, x#, y#, z#)												: "Vector3_DeltaPitchP"
-Vector3_DeltaPitchV#(vector*, other*)													: "Vector3_DeltaPitchV"
-Vector3_DeltaYaw#(vector*)																: "Vector3_DeltaYaw"
-Vector3_DeltaYawP#(vector*, x#, y#, z#)													: "Vector3_DeltaYawP"
-Vector3_DeltaYawV#(vector*, other*)														: "Vector3_DeltaYawV"
-Vector3_Serialize$(vector*)																: "Vector3_Serialize"
-Vector3_Deserialize(vector*, serial$)													: "Vector3_Deserialize"
+; Container --------------------------------------------------------------------
+; -- List (Single Element)
+BU_List_Create%(element*)
+BU_List_Destroy%(list%)
+BU_List_First%(list%)
+BU_List_Last%(list%)
+BU_List_Previous%(list%)
+BU_List_Next%(list%)
+BU_List_Before%(list%, other*)
+BU_List_After%(list%, other*)
+BU_List_Insert(list%, element*)
+BU_List_InsertEx(list%, element*, other*)
+BU_List_Remove(list%, element*)
+; -- TypeList (Single Type)
+BU_TypeList_New%(obj*)
+BU_TypeList_Activate(list%)
+BU_TypeList_Deactivate(list%)
+BU_TypeList_Destroy(list%)
 
-; Containers -------------------------------------------------------------------
-; -- Native Blitz List (Not Threadsafe)
-BU_BlitzList_New%(obj*)																	: "BlitzList_New"
-BU_BlitzList_Activate(list%)															: "BlitzList_Activate"
-BU_BlitzList_Deactivate(list%)															: "BlitzList_Deactivate"
-BU_BlitzList_Destroy(list%)																: "BlitzList_Delete"
+; Types ------------------------------------------------------------------------
+; -- LongLong
+BU_LongLong_Create%()
+BU_LongLong_Destroy(LongLong%)
+BU_LongLong_Copy%(LongLong%)
+BU_LongLong_TempCreate%()
+BU_LongLong_TempCopy%(LongLong%)
+BU_LongLong_SetTemp(LongLong%)
+BU_LongLong_UnsetTemp(LongLong%)
+BU_LongLong_TempCleanup()
+BU_LongLong_Set(LongLong%, LongLong%)
+BU_LongLong_SetV(LongLong%, LongHigh%, LongLow%)
+BU_LongLong_Add(LongLong%, LongLong%)
+BU_LongLong_AddV(LongLong%, LongHigh%, LongLow%)
+BU_LongLong_Sub(LongLong%, LongLong%)
+BU_LongLong_SubV(LongLong%, LongHigh%, LongLow%)
+BU_LongLong_Mul(LongLong%, LongLong%)
+BU_LongLong_MulV(LongLong%, LongHigh%, LongLow%)
+BU_LongLong_Div(LongLong%, LongLong%)
+BU_LongLong_DivV(LongLong%, LongHigh%, LongLow%)
+BU_LongLong_Compare%(LongLong%, LongLong%)
+BU_LongLong_CompareV%(LongLong%, LongHigh%, LongLow%)
+BU_LongLong_ToString$(LongLong%)
+BU_LongLong_FromString%(String$)
+BU_LongLong_ToLong%(LongLong%, Modulus%)
+BU_LongLong_FromLong%(LongHigh%, LongLow%)
+BU_LongLong_ToLongHigh%(LongLong%)
+BU_LongLong_ToLongLow%(LongLong%)
+BU_LongLong_ToFloat#(LongLong%)
+BU_LongLong_FromFloat%(Float#)
+BU_LongLong_ToDouble%(LongLong%)
+BU_LongLong_FromDouble%(double%)
+BU_LongLong_Serialize$(LongLong%)
+BU_LongLong_Deserialize%(String$)
+; -- Double
+BU_Double_Create%()
+BU_Double_Destroy(Double%)
+BU_Double_Copy%(Double%)
+BU_Double_TempCreate%()
+BU_Double_TempCopy%(Double%)
+BU_Double_SetTemp(Double%)
+BU_Double_UnsetTemp(Double%)
+BU_Double_TempCleanup()
+BU_Double_Set(Double%, Double%)
+BU_Double_SetF(Double%, Float#)
+BU_Double_Add(Double%, Double%)
+BU_Double_AddF(Double%, Float#)
+BU_Double_Sub(Double%, Double%)
+BU_Double_SubF(Double%, Float#)
+BU_Double_Mul(Double%, Double%)
+BU_Double_MulF(Double%, Float#)
+BU_Double_Div(Double%, Double%)
+BU_Double_DivF(Double%, Float#)
+BU_Double_Compare%(Double%, Double%)
+BU_Double_CompareF%(Double%, Float#)
+BU_Double_ToString$(Double%)
+BU_Double_FromString%(String$)
+BU_Double_ToFloat#(Double%)
+BU_Double_FromFloat%(Float#)
+BU_Double_ToLongLong%(Double%)
+BU_Double_FromLongLong%(LongLong%)
+BU_Double_Serialize$(Double%)
+BU_Double_Deserialize%(String$)
 
 ; Utility ----------------------------------------------------------------------
-; -- Monitor/Display Enumeration
-BU_Display_Enumerate()																	: "Display_Enumerate"
-BU_Display_Count%()																		: "Display_Count"
-BU_Display_Get(id%, rectangle*)															: "Display_Get"
-; -- Fast Indexing V1 (Array-based)
-BU_IndexerV1_Create%()																	: "IndexerV1_Create"
-BU_IndexerV1_Destroy(indexer%)															: "IndexerV1_Destroy"
-BU_IndexerV1_GetIndex%(indexer%)														: "IndexerV1_GetFreeIndex"
-BU_IndexerV1_MarkIndex(indexer%, index%)												: "IndexerV1_MarkFreeIndex"
-; -- Fast Indexing V2 (Vector-based)
-BU_IndexerV2_Create%()																	: "IndexerV2_Create"
-BU_IndexerV2_Destroy(indexer%)															: "IndexerV2_Destroy"
-BU_IndexerV2_GetIndex%(indexer%)														: "IndexerV2_GetIndex"
-BU_IndexerV2_MarkIndex(indexer%, index%)												: "IndexerV2_MarkIndex"
-BU_IndexerV2_IsFree%(indexer%, index%)													: "IndexerV2_IsFree"
-BU_IndexerV2_IsUsed%(indexer%, index%)													: "IndexerV2_IsUsed"
+; -- Display Enumerator
+BU_DisplayEnumerator_Create%()
+BU_DisplayEnumerator_Destroy(DisplayEnumerator%)
+BU_DisplayEnumerator_Enumerate%(DisplayEnumerator%)
+BU_DisplayEnumerator_Count%(DisplayEnumerator%)
+BU_DisplayEnumerator_Retrieve(DisplayEnumerator%, index%, Rect*)
+; -- Indexer V1 (Array)
+BU_IndexerV1_Create%()
+BU_IndexerV1_Destroy(Indexer%)
+BU_IndexerV1_Mark(Indexer%, Used%)
+BU_IndexerV1_MarkFree(Indexer%)
+BU_IndexerV1_MarkUsed(Indexer%)
+BU_IndexerV1_Is%(Indexer%, Used%)
+BU_IndexerV1_IsFree%(Indexer%)
+BU_IndexerV1_IsUsed%(Indexer%)
+BU_IndexerV1_Get%(Indexer%)
+BU_IndexerV1_Count%(Indexer%, Used%)
+BU_IndexerV1_CountFree%(Indexer%)
+BU_IndexerV1_CountUsed%(Indexer%)
+; -- Indexer V2 (List)
+BU_IndexerV2_Create%()
+BU_IndexerV2_Destroy(Indexer%)
+BU_IndexerV2_Mark(Indexer%, Used%)
+BU_IndexerV2_MarkFree(Indexer%)
+BU_IndexerV2_MarkUsed(Indexer%)
+BU_IndexerV2_Is%(Indexer%, Used%)
+BU_IndexerV2_IsFree%(Indexer%)
+BU_IndexerV2_IsUsed%(Indexer%)
+BU_IndexerV2_Get%(Indexer%)
+BU_IndexerV2_Count%(Indexer%, Used%)
+BU_IndexerV2_CountFree%(Indexer%)
+BU_IndexerV2_CountUsed%(Indexer%)
+; -- Mass Operation
+BU_MassOp_Create%(length%)
+BU_MassOp_Destroy(massop%)
+BU_MassOp_Instruction(massop%, index%, type%, code%, leftOperand%, rightOperand%, result%)
+BU_MassOp_Run(massop%)
 ; -- Window Message Handler
-BU_WindowMessageHandler_InstallHandler(hwnd%)											: "WindowMessageHandler_Install"
-BU_WindowMessageHandler_UninstallHandler(hwnd%)											: "WindowMessageHandler_Uninstall"
-BU_WindowMessageHandler_Message_Close%(hwnd%)											: "WindowMessageHandler_Message_Close"
-BU_WindowMessageHandler_Message_Destroy%(hwnd%)											: "WindowMessageHandler_Message_Destroy"
-BU_WindowMessageHandler_Message_Resize%(hwnd%, point*)									: "WindowMessageHandler_Message_Resize"
+BU_WindowMessageHandler_Install(hwnd%)
+BU_WindowMessageHandler_Uninstall(hwnd%)
+BU_WindowMessageHandler_Message_Close%(hwnd%)
+BU_WindowMessageHandler_Message_Destroy%(hwnd%)
+BU_WindowMessageHandler_Message_Resize%(hwnd%, point*)
 
-; Databases --------------------------------------------------------------------
-; -- SQLite3
-SQLite3_LibVersion$()																	: "sqlite3_libversion"
-SQLite3_Open%(Filename$, DatabaseHandle*)												: "sqlite3_open"
-SQLite3_Open_V2%(Filename$, DatabaseHandle*, Flags%, VFS%)								: "sqlite3_open_v2"
-SQLite3_Close%(DatabaseHandle)															: "sqlite3_close"
-SQLite3_Busy_TimeOut%(DatabaseHandle, TimeOut)											: "sqlite3_busy_timeout"
-SQLite3_Get_AutoCommit%(DatabaseHandle)													: "sqlite3_get_autocommit"
-SQLite3_Interrupt(DatabaseHandle)														: "sqlite3_interrupt"
-SQLite3_ErrCode%(DatabaseHandle)														: "sqlite3_errcode"
-SQLite3_ErrMsg$(DatabaseHandle)															: "sqlite3_errmsg"
-SQLite3_Exec%(DatabaseHandle, SQL$, CallBack, FirstParam, Error)						: "sqlite3_exec"
-SQLite3_Changes%(DatabaseHandle)														: "sqlite3_changes"
-SQLite3_Total_Changes%(DatabaseHandle)													: "sqlite3_total_changes"
-SQLite3_Last_Insert_RowID%(DatabaseHandle)												: "sqlite3_last_insert_rowid"
-SQLite3_Prepare%(DatabaseHandle, SQL$, LengthOfSQL, StatementHandle*, SQLTail)			: "sqlite3_prepare"
-SQLite3_Step%(StatementHandle)															: "sqlite3_step"
-SQLite3_Reset%(StatementHandle)															: "sqlite3_reset"
-SQLite3_Finalize%(StatementHandle)														: "sqlite3_finalize"
-SQLite3_Data_Count%(StatementHandle)													: "sqlite3_data_count"
-SQLite3_DB_Handle%(StatementHandle)														: "sqlite3_db_handle"
-SQLite3_Bind_Parameter_Count%(StatementHandle)											: "sqlite3_bind_parameter_count"
-SQLite3_Bind_Parameter_Index%(StatementHandle, ParameterName$)							: "sqlite3_bind_parameter_index"
-SQLite3_Bind_Parameter_Name$(StatementHandle, ParameterIndex)							: "sqlite3_bind_parameter_name"
-SQLite3_Transfer_Bindings%(StatementHandle1, StatementHandle2)							: "sqlite3_transfer_bindings"
-SQLite3_Bind_Null%(StatementHandle, Index)												: "sqlite3_bind_null"
-SQLite3_Bind_Int%(StatementHandle, Index, Value)										: "sqlite3_bind_int"
-SQLite3_Bind_Int64%(StatementHandle, Index, Left, Right)								: "sqlite3_bind_int64_ex"
-SQLite3_Bind_Float%(StatementHandle, Index, Value#)										: "sqlite3_bind_float"
-SQLite3_Bind_Double%(StatementHandle, Index, Value#)									: "sqlite3_bind_double"
-SQLite3_Bind_Text%(StatementHandle, Index, Value$, LengthOfText, Destructor)			: "sqlite3_bind_text"
-SQLite3_Bind_Blob%(StatementHandle, Index, Value, LengthOfBlob, Destructor)				: "sqlite3_bind_blob"
-SQLite3_Column_Count%(StatementHandle)													: "sqlite3_column_count"
-SQLite3_Column_Name$(StatementHandle, ColumnIndex)										: "sqlite3_column_name"
-SQLite3_Column_Type%(StatementHandle, ColumnIndex)										: "sqlite3_column_type"
-SQLite3_Column_DeclType$(StatementHandle, ColumnIndex)									: "sqlite3_column_decltype"
-SQLite3_Column_Int%(StatementHandle, ColumnIndex)										: "sqlite3_column_int"
-SQLite3_Column_Int64(StatementHandle, ColumnIndex, outPtr*)								: "sqlite3_column_int64_ex"
-SQLite3_Column_Float#(StatementHandle, ColumnIndex)										: "sqlite3_column_float"
-SQLite3_Column_Double#(StatementHandle, ColumnIndex)									: "sqlite3_column_double"
-SQLite3_Column_Text$(StatementHandle, ColumnIndex)										: "sqlite3_column_text"
-SQLite3_Column_Bytes%(StatementHandle, ColumnIndex)										: "sqlite3_column_bytes"
-SQLite3_Column_Blob%(StatementHandle, ColumnIndex)										: "sqlite3_column_blob"
-; SQLite3 Wrapped
-SQLite_Version$()																		: "sqlite3_libversion"
-SQLite_Close%(DatabaseHandle)															: "sqlite3_close"
-SQLite_SetTimeOut%(DatabaseHandle, TimeOut)												: "sqlite3_busy_timeout"
-SQLite_Get_AutoCommit%(DatabaseHandle)													: "sqlite3_get_autocommit"
-SQLite_Interrupt(DatabaseHandle)														: "sqlite3_interrupt"
-SQLite_ErrCode%(DatabaseHandle)															: "sqlite3_errcode"
-SQLite_ErrMsg$(DatabaseHandle)															: "sqlite3_errmsg"
-SQLite_Changes%(DatabaseHandle)															: "sqlite3_changes"
-SQLite_Total_Changes%(DatabaseHandle)													: "sqlite3_total_changes"
-SQLite_Last_Insert_RowID%(DatabaseHandle)												: "sqlite3_last_insert_rowid"
-SQLite_Step%(StatementHandle)															: "sqlite3_step"
-SQLite_Reset%(StatementHandle)															: "sqlite3_reset"
-SQLite_Finalize%(StatementHandle)														: "sqlite3_finalize"
-SQLite_Data_Count%(StatementHandle)														: "sqlite3_data_count"
-SQLite_DB_Handle%(StatementHandle)														: "sqlite3_db_handle"
-SQLite_Bind_Parameter_Count%(StatementHandle)											: "sqlite3_bind_parameter_count"
-SQLite_Bind_Parameter_Index%(StatementHandle, ParameterName$)							: "sqlite3_bind_parameter_index"
-SQLite_Bind_Parameter_Name$(StatementHandle, ParameterIndex)							: "sqlite3_bind_parameter_name"
-SQLite_Transfer_Bindings%(StatementHandle1, StatementHandle2)							: "sqlite3_transfer_bindings"
-SQLite_Bind_Null%(StatementHandle, Index)												: "sqlite3_bind_null"
-SQLite_Bind_Int%(StatementHandle, Index, Value)											: "sqlite3_bind_int"
-SQLite_Bind_Int64%(StatementHandle, Index, Left, Right)									: "sqlite3_bind_int64_ex"
-;SQLite_Bind_Text%(StatementHandle, Index, Value$, LengthOfText, Destructor)				: "sqlite3_bind_text"
-;SQLite_Bind_Blob%(StatementHandle, Index, Value, LengthOfBlob, Destructor)				: "sqlite3_bind_blob"
-SQLite_Bind_Double%(StatementHandle, Index, Value#)										: "sqlite3_bind_double"
-SQLite_Bind_Float%(StatementHandle, Index, Value#)										: "sqlite3_bind_float"
-SQLite_Column_Count%(StatementHandle)													: "sqlite3_column_count"
-SQLite_Column_Name$(StatementHandle, ColumnIndex)										: "sqlite3_column_name"
-SQLite_Column_Type%(StatementHandle, ColumnIndex)										: "sqlite3_column_type"
-SQLite_Column_DeclType$(StatementHandle, ColumnIndex)									: "sqlite3_column_decltype"
-SQLite_Column_Int%(StatementHandle, ColumnIndex)										: "sqlite3_column_int"
-SQLite_Column_Double#(StatementHandle, ColumnIndex)										: "sqlite3_column_double"
-SQLite_Column_Text$(StatementHandle, ColumnIndex)										: "sqlite3_column_text"
-SQLite_Column_Bytes%(StatementHandle, ColumnIndex)										: "sqlite3_column_bytes"
-SQLite_Column_Blob%(StatementHandle, ColumnIndex)										: "sqlite3_column_blob"
-SQLite_Column_Float#(StatementHandle, ColumnIndex)										: "sqlite3_column_float"
-
-; Backwards Compatability - Containers -----------------------------------------
-; -- Lists
-BlitzUtility_List_New%(obj*)															: "BlitzList_New"
-BlitzUtility_List_Activate(list%)														: "BlitzList_Activate"
-BlitzUtility_List_Deactivate(list%)														: "BlitzList_Deactivate"
-BlitzUtility_List_Destroy(list%)														: "BlitzList_Delete"
-; Backwards Compatability - Utility --------------------------------------------
-; -- Monitor/Display Enumeration
-BlitzUtility_EnumerateDisplays()														: "Display_Enumerate"
-BlitzUtility_GetDisplayCount%()															: "Display_Count"
-BlitzUtility_GetDisplay(id%, rectangle*)												: "Display_Get"
-; -- Fast Indexing V1 (Array-based)
-Indexer_Create%()																		: "IndexerV1_Create"
-Indexer_GetFreeIndex%(indexer%)															: "IndexerV1_GetFreeIndex"
-Indexer_MarkFreeIndex(indexer%, index%)													: "IndexerV1_MarkFreeIndex"
-Indexer_Destroy(indexer%)																: "IndexerV1_Destroy"
-; -- Window Message Handler
-BlitzUtility_InstallCloseHandler(hwnd%)													: "WindowMessageHandler_Install"
-BlitzUtility_UninstallCloseHandler(hwnd%)												: "WindowMessageHandler_Uninstall"
-BlitzUtility_GetCloseCount%(hwnd%)														: "WindowMessageHandler_Message_Close"
-
-; Internal ---------------------------------------------------------------------
+; Helpers ----------------------------------------------------------------------
+.lib " "
+; -- Blitz Functions
+BU_Helper_Window_LockPointer(HWND%)
+BU_Helper_Window_LockPointerAuto(HWND%)
+BU_Helper_Window_MakeBorderless(HWND%)
+BU_Helper_Window_Center(HWND%, Monitor%)
+; -- Windows API (User32)
 .lib "User32.dll"
-BlitzUtility_User32_ClientToScreen%(hwnd%, point*)										: "ClientToScreen"
-BlitzUtility_User32_ClipCursor%(rect*)													: "ClipCursor"
-BlitzUtility_User32_ClipCursorI%(ptr%)													: "ClipCursor"
-BlitzUtility_User32_GetActiveWindow%()													: "GetActiveWindow"
-BlitzUtility_User32_GetSystemMetrics%(index%)											: "GetSystemMetrics"
-BlitzUtility_User32_SetWindowLong%(hwnd%, nIndex%, dwNewLong%)							: "SetWindowLongA"
-BlitzUtility_User32_GetWindowLong%(hwnd%, index%)										: "GetWindowLongA"
-BlitzUtility_User32_GetWindowRect%(hwnd%, rect*)										: "GetWindowRect"
-BlitzUtility_User32_GetClientRect%(hwnd%, rect*)										: "GetClientRect"
-BlitzUtility_User32_SetWindowPos%(hwnd%, hWndInsertAfter%, x%, y%, cx%, cy%, wFlags%)	: "SetWindowPos" 
-
+BU_User32_ClientToScreen%(hwnd%, point*)										: "ClientToScreen"
+BU_User32_ClientToScreenEx%(hwnd%, point%)										: "ClientToScreen"
+BU_User32_ClipCursor%(rect*)													: "ClipCursor"
+BU_User32_ClipCursorEx%(ptr%)													: "ClipCursor"
+BU_User32_GetActiveWindow%()													: "GetActiveWindow"
+BU_User32_GetSystemMetrics%(index%)												: "GetSystemMetrics"
+BU_User32_SetWindowLong%(hwnd%, nIndex%, dwNewLong%)							: "SetWindowLongA"
+BU_User32_GetWindowLong%(hwnd%, index%)											: "GetWindowLongA"
+BU_User32_GetWindowRect%(hwnd%, rect*)											: "GetWindowRect"
+BU_User32_GetWindowRectEx%(hwnd%, rect%)										: "GetWindowRect"
+BU_User32_GetClientRect%(hwnd%, rect*)											: "GetClientRect"
+BU_User32_GetClientRectEx%(hwnd%, rect%)										: "GetClientRect"
+BU_User32_SetWindowPos%(hwnd%, hWndInsertAfter%, x%, y%, cx%, cy%, wFlags%)		: "SetWindowPos" 
+; -- Windows API (Kernel32)
 .lib "Kernel32.dll"
-BlitzUtility_Kernel32_FlushFileBuffers%(hFile%)											: "FlushFileBuffers"
+BU_Kernel32_FlushFileBuffers%(hFile%)											: "FlushFileBuffers"
+FlushFile%(hFile%)																: "FlushFileBuffers"
