@@ -15,7 +15,7 @@
 //	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "SQLite.h"
-#include "..\BlitzPointer\Include\BlitzPointer.h"
+#include "..\BlitzPointer\BlitzPointer.h"
 
 DLL_METHOD const char* DLL_CALL SQLite_Version() {
 	return sqlite3_version;
@@ -77,7 +77,8 @@ DLL_METHOD int32_t DLL_CALL SQLite_Busy_Timeout(sqlite3* db, int32_t timeout) {
 }
 
 int __cdecl SQLite3_Busy_Handler_Internal(void* handler, int prm) {
-	return BlitzPointer_CallFunction1((int32_t)handler, (int32_t)prm);
+	BP_BlitzFunction1_t lpFunctionPointer = (BP_BlitzFunction1_t)handler;
+	return lpFunctionPointer((int32_t)prm);
 }
 
 DLL_METHOD int32_t DLL_CALL SQLite_Busy_Handler(sqlite3* db, int32_t handler) {

@@ -14,9 +14,6 @@
     <Filter Include="Source Files\Database\SQLite">
       <UniqueIdentifier>{3ac37a01-a835-479c-b0b0-ecfd04640134}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Math">
-      <UniqueIdentifier>{38444b44-ebf1-4cae-a1a3-1a0b80b045a1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Blitz Files">
       <UniqueIdentifier>{e8e48b8c-14c2-40b5-b48d-d9b55fe6852d}</UniqueIdentifier>
     </Filter>
@@ -25,9 +22,6 @@
     </Filter>
     <Filter Include="Source Files\Type">
       <UniqueIdentifier>{605f2cca-0949-4af8-ab67-7042309a2abc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Libraries">
-      <UniqueIdentifier>{2b65f925-151d-4073-a06e-8d7d4603ef16}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -67,15 +61,6 @@
     <ClCompile Include="Utility\DisplayEnumerator.cpp">
       <Filter>Source Files\Utility</Filter>
     </ClCompile>
-    <ClCompile Include="Math\BVector3.cpp">
-      <Filter>Source Files\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="Math\FVector2.cpp">
-      <Filter>Source Files\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="Libraries\BlitzPointer.cpp">
-      <Filter>Source Files\Libraries</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dllmain.h">
@@ -113,15 +98,6 @@
     </ClInclude>
     <ClInclude Include="Utility\DisplayEnumerator.h">
       <Filter>Source Files\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="Math\BVector3.h">
-      <Filter>Source Files\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Math\FVector2.h">
-      <Filter>Source Files\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Libraries\BlitzPointer.h">
-      <Filter>Source Files\Libraries</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -16,10 +16,6 @@
 
 #pragma once
 
-// STL Exceptions
-#include <exception>
-#include <stdexcept>
-
 // Memory Management
 #include <memory>
 
@@ -32,11 +28,7 @@
 #include <windows.h>
 
 // Macros
-#ifndef IMPORT
-	#define DLL_METHOD extern "C" //__declspec(dllexport)
-#else
-	#define DLL_METHOD extern "c" __declspec(dllimport)
-#endif
+#define DLL_METHOD extern "C"
 #define DLL_CALL __stdcall
 
 //Templates
