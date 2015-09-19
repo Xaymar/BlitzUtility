@@ -41,7 +41,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)\#Build\$(ProjectName)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)\#Intermediate\$(ProjectName)\$(Configuration)\</IntDir>
-    <LinkIncremental>false</LinkIncremental>
+    <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)\#Build\$(ProjectName)\$(Configuration)\</OutDir>
@@ -54,8 +54,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>
       </SDLCheck>
-      <AdditionalIncludeDirectories>
-      </AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <StructMemberAlignment>4Bytes</StructMemberAlignment>
@@ -104,8 +103,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>
       </SDLCheck>
-      <AdditionalIncludeDirectories>
-      </AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <StructMemberAlignment>4Bytes</StructMemberAlignment>
@@ -156,8 +154,6 @@
     <ClInclude Include="Type\Double.h" />
     <ClInclude Include="Type\LongLong.h" />
     <ClInclude Include="Utility\IndexerV1.h" />
-    <ClInclude Include="Database\SQLite\SQLite.h" />
-    <ClInclude Include="Database\SQLite\sqlite3.h" />
     <ClInclude Include="Utility\DisplayEnumerator.h" />
     <ClInclude Include="Utility\IndexerV2.h" />
     <ClInclude Include="Utility\WindowMessageHandler.h" />
@@ -165,16 +161,9 @@
   <ItemGroup>
     <ClCompile Include="Container\TypeList.cpp" />
     <ClCompile Include="Container\List.cpp" />
-    <ClCompile Include="Database\SQLite\sqlite3.c">
-      <CallingConvention Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Cdecl</CallingConvention>
-      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsC</CompileAs>
-      <CallingConvention Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Cdecl</CallingConvention>
-      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CompileAsC</CompileAs>
-    </ClCompile>
     <ClCompile Include="Type\Double.cpp" />
     <ClCompile Include="Type\LongLong.cpp" />
     <ClCompile Include="Utility\IndexerV1.cpp" />
-    <ClCompile Include="Database\SQLite\SQLite.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="Utility\DisplayEnumerator.cpp" />
     <ClCompile Include="Utility\IndexerV2.cpp" />

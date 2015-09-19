@@ -8,14 +8,9 @@
     <Filter Include="Source Files\Utility">
       <UniqueIdentifier>{48292af9-63a5-40ae-a447-ad7cecfddd8a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Database">
-      <UniqueIdentifier>{4b84c339-4e83-489c-b421-2cf9fd9e72d1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Database\SQLite">
-      <UniqueIdentifier>{3ac37a01-a835-479c-b0b0-ecfd04640134}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Blitz Files">
       <UniqueIdentifier>{e8e48b8c-14c2-40b5-b48d-d9b55fe6852d}</UniqueIdentifier>
+      <Extensions>bb;decls;ipf</Extensions>
     </Filter>
     <Filter Include="Source Files\Container">
       <UniqueIdentifier>{ff6bcb4d-9140-40a9-80dd-3698b63bd1c1}</UniqueIdentifier>
@@ -28,14 +23,8 @@
     <ClCompile Include="dllmain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Database\SQLite\SQLite.cpp">
-      <Filter>Source Files\Database\SQLite</Filter>
-    </ClCompile>
     <ClCompile Include="Utility\WindowMessageHandler.cpp">
       <Filter>Source Files\Utility</Filter>
-    </ClCompile>
-    <ClCompile Include="Database\SQLite\sqlite3.c">
-      <Filter>Source Files\Database\SQLite</Filter>
     </ClCompile>
     <ClCompile Include="Utility\IndexerV1.cpp">
       <Filter>Source Files\Utility</Filter>
@@ -65,12 +54,6 @@
   <ItemGroup>
     <ClInclude Include="dllmain.h">
       <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Database\SQLite\SQLite.h">
-      <Filter>Source Files\Database\SQLite</Filter>
-    </ClInclude>
-    <ClInclude Include="Database\SQLite\sqlite3.h">
-      <Filter>Source Files\Database\SQLite</Filter>
     </ClInclude>
     <ClInclude Include="Utility\WindowMessageHandler.h">
       <Filter>Source Files\Utility</Filter>
