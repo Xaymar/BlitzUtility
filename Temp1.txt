@@ -1,0 +1,60 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+DLL_METHOD int sqlite3_bind_int64_ex(void* stmtPtr, uint32_t index, uint32_t low, uint32_t high) {
+	return sqlite3_bind_int64((sqlite3_stmt*)stmtPtr, index, (((uint64_t)low << 32) + (uint64_t)high));
+}
+#pragma comment(linker, "/EXPORT:sqlite3_bind_int64_ex=_sqlite3_bind_int64_ex@16")
+
+DLL_METHOD int sqlite3_bind_float(void* stmtPtr, uint32_t index, float value) {
+	return sqlite3_bind_double((sqlite3_stmt*)stmtPtr, index, (double)value);
+}
+#pragma comment(linker, "/EXPORT:sqlite3_bind_float=_sqlite3_bind_float@12")
+
+DLL_METHOD void sqlite3_column_int64_ex(void* stmtPtr, uint32_t index, void* outPtr) {
+	sqlite3_int64 out = sqlite3_column_int64((sqlite3_stmt*)stmtPtr, index);
+	uint32_t* ourPtr = (uint32_t*)outPtr;
+	(*ourPtr) = (uint32_t)(out & 0xFFFFFFFF);
+	(*(ourPtr + 1)) = (uint32_t)(out >> 32);
+}
+#pragma comment(linker, "/EXPORT:sqlite3_column_int64_ex=_sqlite3_column_int64_ex@12")
+
+DLL_METHOD float sqlite3_column_float(void* stmtPtr, uint32_t index) {
+	double out = sqlite3_column_double((sqlite3_stmt*)stmtPtr, index);
+	return (float)out;
+}
+#pragma comment(linker, "/EXPORT:sqlite3_column_float=_sqlite3_column_float@8")
