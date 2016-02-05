@@ -1,5 +1,5 @@
 //	BlitzUtility - Expanding the normal Blitz functionality.
-//	Copyright (C) 2015 Project Kube (Michael Fabian Dirks)
+//	Copyright (C) 2015 Xaymar (Michael Fabian Dirks)
 //
 //	This program is free software: you can redistribute it and/or modify
 //	it under the terms of the GNU Lesser General Public License as
@@ -77,50 +77,50 @@ uint32_t IndexerV1::count(bool used) {
 	return amount;
 }
 
-DLL_METHOD IndexerV1* DLL_CALL BU_IndexerV1_Create() {
+DLL_FUNCTION(IndexerV1*) BU_IndexerV1_Create() {
 	return new IndexerV1();
 }
 
-DLL_METHOD void DLL_CALL BU_IndexerV1_Destroy(IndexerV1* indexer) {
+DLL_FUNCTION(void) BU_IndexerV1_Destroy(IndexerV1* indexer) {
 	delete indexer;
 }
 
-DLL_METHOD void DLL_CALL BU_IndexerV1_Mark(IndexerV1* indexer, uint32_t index, uint32_t used) {
+DLL_FUNCTION(void) BU_IndexerV1_Mark(IndexerV1* indexer, uint32_t index, uint32_t used) {
 	indexer->mark(index, used != 0);
 }
 
-DLL_METHOD void DLL_CALL BU_IndexerV1_MarkFree(IndexerV1* indexer, uint32_t index) {
+DLL_FUNCTION(void) BU_IndexerV1_MarkFree(IndexerV1* indexer, uint32_t index) {
 	indexer->mark(index, false);
 }
 
-DLL_METHOD void DLL_CALL BU_IndexerV1_MarkUsed(IndexerV1* indexer, uint32_t index) {
+DLL_FUNCTION(void) BU_IndexerV1_MarkUsed(IndexerV1* indexer, uint32_t index) {
 	indexer->mark(index, true);
 }
 
-DLL_METHOD uint32_t DLL_CALL BU_IndexerV1_Is(IndexerV1* indexer, uint32_t index, uint32_t used) {
+DLL_FUNCTION(uint32_t) BU_IndexerV1_Is(IndexerV1* indexer, uint32_t index, uint32_t used) {
 	return indexer->is(index, used != 0);
 }
 
-DLL_METHOD uint32_t DLL_CALL BU_IndexerV1_IsFree(IndexerV1* indexer, uint32_t index) {
+DLL_FUNCTION(uint32_t) BU_IndexerV1_IsFree(IndexerV1* indexer, uint32_t index) {
 	return indexer->is(index, false);
 }
 
-DLL_METHOD uint32_t DLL_CALL BU_IndexerV1_IsUsed(IndexerV1* indexer, uint32_t index) {
+DLL_FUNCTION(uint32_t) BU_IndexerV1_IsUsed(IndexerV1* indexer, uint32_t index) {
 	return indexer->is(index, true);
 }
 
-DLL_METHOD uint32_t DLL_CALL BU_IndexerV1_Get(IndexerV1* indexer) {
+DLL_FUNCTION(uint32_t) BU_IndexerV1_Get(IndexerV1* indexer) {
 	return indexer->get();
 }
 
-DLL_METHOD uint32_t DLL_CALL BU_IndexerV1_Count(IndexerV1* indexer, uint32_t used) {
+DLL_FUNCTION(uint32_t) BU_IndexerV1_Count(IndexerV1* indexer, uint32_t used) {
 	return indexer->count(used != 0);
 }
 
-DLL_METHOD uint32_t DLL_CALL BU_IndexerV1_CountFree(IndexerV1* indexer) {
+DLL_FUNCTION(uint32_t) BU_IndexerV1_CountFree(IndexerV1* indexer) {
 	return indexer->count(false);
 }
 
-DLL_METHOD uint32_t DLL_CALL BU_IndexerV1_CountUsed(IndexerV1* indexer) {
+DLL_FUNCTION(uint32_t) BU_IndexerV1_CountUsed(IndexerV1* indexer) {
 	return indexer->count(true);
 }

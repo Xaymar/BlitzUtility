@@ -1,5 +1,5 @@
 //	BlitzUtility - Expanding the normal Blitz functionality.
-//	Copyright (C) 2015 Project Kube (Michael Fabian Dirks)
+//	Copyright (C) 2015 Xaymar (Michael Fabian Dirks)
 //
 //	This program is free software: you can redistribute it and/or modify
 //	it under the terms of the GNU Lesser General Public License as
@@ -60,7 +60,7 @@ LRESULT CALLBACK BU_WindowMessageHandler_Procedure(HWND hwnd, UINT uMsg, WPARAM 
 	}
 }
 
-DLL_METHOD void DLL_CALL BU_WindowMessageHandler_Install(HWND hwnd)
+DLL_FUNCTION(void) BU_WindowMessageHandler_Install(HWND hwnd)
 {
 	WindowUserData* UserData = new WindowUserData;
 	ZeroMemory(UserData, sizeof(UserData));
@@ -68,7 +68,7 @@ DLL_METHOD void DLL_CALL BU_WindowMessageHandler_Install(HWND hwnd)
 	UserData->oUserData = SetWindowLong(hwnd, GWL_USERDATA, (LONG)UserData);
 }
 
-DLL_METHOD void DLL_CALL BU_WindowMessageHandler_Uninstall(HWND hwnd)
+DLL_FUNCTION(void) BU_WindowMessageHandler_Uninstall(HWND hwnd)
 {
 	WindowUserData* UserData = (WindowUserData*)GetWindowLong(hwnd, GWL_USERDATA);
 	if (UserData) {
@@ -78,7 +78,7 @@ DLL_METHOD void DLL_CALL BU_WindowMessageHandler_Uninstall(HWND hwnd)
 	}
 }
 
-DLL_METHOD uint32_t DLL_CALL BU_WindowMessageHandler_Message_Resize(HWND hwnd, LPPOINT point)
+DLL_FUNCTION(uint32_t) BU_WindowMessageHandler_Message_Resize(HWND hwnd, LPPOINT point)
 {
 	WindowUserData* UserData = (WindowUserData*)GetWindowLong(hwnd, GWL_USERDATA);
 	if (UserData) {
@@ -91,7 +91,7 @@ DLL_METHOD uint32_t DLL_CALL BU_WindowMessageHandler_Message_Resize(HWND hwnd, L
 	return FALSE;
 }
 
-DLL_METHOD uint32_t DLL_CALL BU_WindowMessageHandler_Message_Destroy(HWND hwnd)
+DLL_FUNCTION(uint32_t) BU_WindowMessageHandler_Message_Destroy(HWND hwnd)
 {
 	WindowUserData* UserData = (WindowUserData*)GetWindowLong(hwnd, GWL_USERDATA);
 	if (UserData) {
@@ -102,7 +102,7 @@ DLL_METHOD uint32_t DLL_CALL BU_WindowMessageHandler_Message_Destroy(HWND hwnd)
 	return 0;
 }
 
-DLL_METHOD uint32_t DLL_CALL BU_WindowMessageHandler_Message_Close(HWND hwnd)
+DLL_FUNCTION(uint32_t) BU_WindowMessageHandler_Message_Close(HWND hwnd)
 {
 	if (hwnd) {
 		WindowUserData* UserData = (WindowUserData*)GetWindowLong(hwnd, GWL_USERDATA);

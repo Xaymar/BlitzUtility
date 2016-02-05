@@ -18,11 +18,17 @@
     <Filter Include="Source Files\Type">
       <UniqueIdentifier>{605f2cca-0949-4af8-ab67-7042309a2abc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Database">
+      <UniqueIdentifier>{dfe42881-d7cc-4245-8dc4-f56d80f20fa8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Database\SQLite">
+      <UniqueIdentifier>{82641744-2ff6-4000-9bec-718eb209a2a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Time">
+      <UniqueIdentifier>{5a129704-2426-422d-8a40-c869f58d94cb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="dllmain.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Utility\WindowMessageHandler.cpp">
       <Filter>Source Files\Utility</Filter>
     </ClCompile>
@@ -50,11 +56,26 @@
     <ClCompile Include="Utility\DisplayEnumerator.cpp">
       <Filter>Source Files\Utility</Filter>
     </ClCompile>
+    <ClCompile Include="BlitzUtility.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Database\SQLite\SQLite.cpp">
+      <Filter>Source Files\Database\SQLite</Filter>
+    </ClCompile>
+    <ClCompile Include="Time\HighResolutionClock.cpp">
+      <Filter>Source Files\Time</Filter>
+    </ClCompile>
+    <ClCompile Include="Database\SQLite\sqlite3.c">
+      <Filter>Source Files\Database\SQLite</Filter>
+    </ClCompile>
+    <ClCompile Include="Time\SystemClock.cpp">
+      <Filter>Source Files\Time</Filter>
+    </ClCompile>
+    <ClCompile Include="Time\Time.cpp">
+      <Filter>Source Files\Time</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="dllmain.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="Utility\WindowMessageHandler.h">
       <Filter>Source Files\Utility</Filter>
     </ClInclude>
@@ -81,6 +102,24 @@
     </ClInclude>
     <ClInclude Include="Utility\DisplayEnumerator.h">
       <Filter>Source Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="BlitzUtility.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Database\SQLite\SQLite.h">
+      <Filter>Source Files\Database\SQLite</Filter>
+    </ClInclude>
+    <ClInclude Include="Time\HighResolutionClock.h">
+      <Filter>Source Files\Time</Filter>
+    </ClInclude>
+    <ClInclude Include="Database\SQLite\sqlite3.h">
+      <Filter>Source Files\Database\SQLite</Filter>
+    </ClInclude>
+    <ClInclude Include="Time\SystemClock.h">
+      <Filter>Source Files\Time</Filter>
+    </ClInclude>
+    <ClInclude Include="Time\Time.h">
+      <Filter>Source Files\Time</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

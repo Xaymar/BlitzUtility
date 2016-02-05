@@ -1,5 +1,5 @@
 //	Blitz - Steam wrapper for Blitz.
-//	Copyright (C) 2015 Project Kube (Michael Fabian Dirks)
+//	Copyright (C) 2015 Xaymar (Michael Fabian Dirks)
 //
 //	This program is free software: you can redistribute it and/or modify
 //	it under the terms of the GNU Lesser General Public License as
@@ -15,7 +15,7 @@
 //	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
-#include "dllmain.h"
+#include "BlitzUtility.h"
 #include "Type\Double.h"
 #include "Type\LongLong.h"
 
@@ -98,11 +98,11 @@ struct MassOp {
 	MassOpInstruction* instructions;
 };
 
-DLL_METHOD MassOp* DLL_CALL BU_MassOp_Create(uint32_t length);
+DLL_FUNCTION(MassOp*) BU_MassOp_Create(uint32_t length);
 #pragma comment(linker, "/EXPORT:BU_MassOp_Create=_BU_MassOp_Create@4")
-DLL_METHOD void DLL_CALL BU_MassOp_Destroy(MassOp* massop);
+DLL_FUNCTION(void) BU_MassOp_Destroy(MassOp* massop);
 #pragma comment(linker, "/EXPORT:BU_MassOp_Destroy=_BU_MassOp_Destroy@4")
-DLL_METHOD void DLL_CALL BU_MassOp_Instruction(MassOp* massop, uint32_t index, MassOpType type, MassOpCode code, intptr_t leftOperand, intptr_t rightOperand, intptr_t result);
+DLL_FUNCTION(void) BU_MassOp_Instruction(MassOp* massop, uint32_t index, MassOpType type, MassOpCode code, intptr_t leftOperand, intptr_t rightOperand, intptr_t result);
 #pragma comment(linker, "/EXPORT:BU_MassOp_Instruction=_BU_MassOp_Instruction@28")
-DLL_METHOD void DLL_CALL BU_MassOp_Run(MassOp* massop);
+DLL_FUNCTION(void) BU_MassOp_Run(MassOp* massop);
 #pragma comment(linker, "/EXPORT:BU_MassOp_Run=_BU_MassOp_Run@4")

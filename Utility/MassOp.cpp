@@ -1,5 +1,5 @@
 //	Blitz - Steam wrapper for Blitz.
-//	Copyright (C) 2015 Project Kube (Michael Fabian Dirks)
+//	Copyright (C) 2015 Xaymar (Michael Fabian Dirks)
 //
 //	This program is free software: you can redistribute it and/or modify
 //	it under the terms of the GNU Lesser General Public License as
@@ -15,7 +15,7 @@
 //	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
-#include "dllmain.h"
+#include "BlitzUtility.h"
 #include "MassOp.h"
 
 MassOp::MassOp(uint32_t length) : length(length) {
@@ -26,16 +26,16 @@ MassOp::~MassOp() {
 	delete this->instructions;
 }
 
-DLL_METHOD MassOp* DLL_CALL BU_MassOp_Create(uint32_t length) {
+DLL_FUNCTION(MassOp*) BU_MassOp_Create(uint32_t length) {
 	MassOp* myMassOp = new MassOp(length);
 	return myMassOp;
 }
 
-DLL_METHOD void DLL_CALL BU_MassOp_Destroy(MassOp* massop) {
+DLL_FUNCTION(void) BU_MassOp_Destroy(MassOp* massop) {
 	delete massop;
 }
 
-DLL_METHOD void DLL_CALL BU_MassOp_Instruction(MassOp* massop, uint32_t index, MassOpType type, MassOpCode code, intptr_t leftOperand, intptr_t rightOperand, intptr_t result) {
+DLL_FUNCTION(void) BU_MassOp_Instruction(MassOp* massop, uint32_t index, MassOpType type, MassOpCode code, intptr_t leftOperand, intptr_t rightOperand, intptr_t result) {
 	massop->instructions[index].type = type;
 	massop->instructions[index].code = code;
 	massop->instructions[index].leftOperand = leftOperand;
@@ -43,7 +43,7 @@ DLL_METHOD void DLL_CALL BU_MassOp_Instruction(MassOp* massop, uint32_t index, M
 	massop->instructions[index].result = result;
 }
 
-DLL_METHOD void DLL_CALL BU_MassOp_Run(MassOp* massop) {
+DLL_FUNCTION(void) BU_MassOp_Run(MassOp* massop) {
 	for (uint32_t index = 0; index < massop->length; index++) {
 		MassOpInstruction* instr = &massop->instructions[index];
 		switch (instr->code) {
@@ -117,19 +117,19 @@ DLL_METHOD void DLL_CALL BU_MassOp_Run(MassOp* massop) {
 					case Double:
 						switch (instr->code) {
 							case Create:
-								instr->result = (uint32_t)BU_Double_Create();
+								instr->result = (uint32_t) BU_Double_Create();
 								break;
 							case Destroy:
 								BU_Double_Destroy((double_t*)instr->leftOperand);
 								break;
 							case Copy:
-								instr->result = (uint32_t)BU_Double_Copy((double_t*)instr->leftOperand);
+								instr->result = (uint32_t) BU_Double_Copy((double_t*)instr->leftOperand);
 								break;
 							case TempCreate:
-								instr->result = (uint32_t)BU_Double_TempCreate();
+								instr->result = (uint32_t) BU_Double_TempCreate();
 								break;
 							case TempCopy:
-								instr->result = (uint32_t)BU_Double_TempCopy((double_t*)instr->leftOperand);
+								instr->result = (uint32_t) BU_Double_TempCopy((double_t*)instr->leftOperand);
 								break;
 							case TempCleanup:
 								BU_Double_TempCleanup();
@@ -157,19 +157,19 @@ DLL_METHOD void DLL_CALL BU_MassOp_Run(MassOp* massop) {
 					case LongLong:
 						switch (instr->code) {
 							case Create:
-								instr->result = (uint32_t)BU_LongLong_Create();
+								instr->result = (uint32_t) BU_LongLong_Create();
 								break;
 							case Destroy:
 								BU_LongLong_Destroy((int64_t*)instr->leftOperand);
 								break;
 							case Copy:
-								instr->result = (uint32_t)BU_LongLong_Copy((int64_t*)instr->leftOperand);
+								instr->result = (uint32_t) BU_LongLong_Copy((int64_t*)instr->leftOperand);
 								break;
 							case TempCreate:
-								instr->result = (uint32_t)BU_LongLong_TempCreate();
+								instr->result = (uint32_t) BU_LongLong_TempCreate();
 								break;
 							case TempCopy:
-								instr->result = (uint32_t)BU_LongLong_TempCopy((int64_t*)instr->leftOperand);
+								instr->result = (uint32_t) BU_LongLong_TempCopy((int64_t*)instr->leftOperand);
 								break;
 							case TempCleanup:
 								BU_LongLong_TempCleanup();

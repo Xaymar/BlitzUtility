@@ -1,5 +1,5 @@
 //	BlitzUtility - Expanding the normal Blitz functionality.
-//	Copyright (C) 2015 Project Kube (Michael Fabian Dirks)
+//	Copyright (C) 2015 Xaymar (Michael Fabian Dirks)
 //
 //	This program is free software: you can redistribute it and/or modify
 //	it under the terms of the GNU Lesser General Public License as
@@ -23,26 +23,26 @@ BOOL CALLBACK BU_DisplayEnumerator_Callback(HMONITOR hMonitor, HDC hdcMonitor, L
 	return TRUE;
 }
 
-DLL_METHOD DisplayEnumerator* DLL_CALL BU_DisplayEnumerator_Create() {
+DLL_FUNCTION(DisplayEnumerator*) BU_DisplayEnumerator_Create() {
 	DisplayEnumerator* displayEnumerator = new DisplayEnumerator();
 	return displayEnumerator;
 }
 
-DLL_METHOD void DLL_CALL BU_DisplayEnumerator_Destroy(DisplayEnumerator* displayEnumerator) {
+DLL_FUNCTION(void) BU_DisplayEnumerator_Destroy(DisplayEnumerator* displayEnumerator) {
 	delete displayEnumerator;
 }
 
-DLL_METHOD uint32_t DLL_CALL BU_DisplayEnumerator_Enumerate(DisplayEnumerator* displayEnumerator) {
+DLL_FUNCTION(uint32_t) BU_DisplayEnumerator_Enumerate(DisplayEnumerator* displayEnumerator) {
 	EnumDisplayMonitors(NULL, NULL, BU_DisplayEnumerator_Callback, (LPARAM)displayEnumerator);
 
 	return displayEnumerator->displays.size();
 }
 
-DLL_METHOD uint32_t DLL_CALL BU_DisplayEnumerator_Count(DisplayEnumerator* displayEnumerator) {
+DLL_FUNCTION(uint32_t) BU_DisplayEnumerator_Count(DisplayEnumerator* displayEnumerator) {
 	return displayEnumerator->displays.size();
 }
 
-DLL_METHOD void DLL_CALL BU_DisplayEnumerator_Retrieve(DisplayEnumerator* displayEnumerator, uint32_t index, PRECT display) {
+DLL_FUNCTION(void) BU_DisplayEnumerator_Retrieve(DisplayEnumerator* displayEnumerator, uint32_t index, PRECT display) {
 	// Retrieve the requested index.
 	auto iterator = displayEnumerator->displays.begin();
 	std::advance(iterator, index);

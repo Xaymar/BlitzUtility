@@ -1,5 +1,5 @@
 //	BlitzUtility - Expanding the normal Blitz functionality.
-//	Copyright (C) 2015 Project Kube (Michael Fabian Dirks)
+//	Copyright (C) 2015 Xaymar (Michael Fabian Dirks)
 //
 //	This program is free software: you can redistribute it and/or modify
 //	it under the terms of the GNU Lesser General Public License as
@@ -17,8 +17,7 @@
 #pragma once
 #include "List.h"
 
-
-DLL_METHOD List* DLL_CALL BU_List_Create(BBTypeElement* element) {
+DLL_FUNCTION(List*) BU_List_Create(BBTypeElement* element) {
 	// Make sure the given element is valid.
 	if (element == NULL)
 		return NULL;
@@ -56,7 +55,7 @@ DLL_METHOD List* DLL_CALL BU_List_Create(BBTypeElement* element) {
 	return myList;
 }
 
-DLL_METHOD void DLL_CALL BU_List_Destroy(List* list) {
+DLL_FUNCTION(void) BU_List_Destroy(List* list) {
 	if (list == NULL)
 		return;
 
@@ -99,7 +98,7 @@ DLL_METHOD void DLL_CALL BU_List_Destroy(List* list) {
 	delete list;
 }
 
-DLL_METHOD uint32_t DLL_CALL BU_List_First(List* list) {
+DLL_FUNCTION(uint32_t) BU_List_First(List* list) {
 	if (list == NULL)
 		return FALSE;
 
@@ -117,7 +116,7 @@ DLL_METHOD uint32_t DLL_CALL BU_List_First(List* list) {
 	return TRUE;
 }
 
-DLL_METHOD uint32_t DLL_CALL BU_List_Last(List* list) {
+DLL_FUNCTION(uint32_t) BU_List_Last(List* list) {
 	if (list == NULL)
 		return FALSE;
 	
@@ -135,7 +134,7 @@ DLL_METHOD uint32_t DLL_CALL BU_List_Last(List* list) {
 	return TRUE;
 }
 
-DLL_METHOD uint32_t DLL_CALL BU_List_Previous(List* list) {
+DLL_FUNCTION(uint32_t) BU_List_Previous(List* list) {
 	if (list == NULL)
 		return FALSE;
 
@@ -153,7 +152,7 @@ DLL_METHOD uint32_t DLL_CALL BU_List_Previous(List* list) {
 	return TRUE;
 }
 
-DLL_METHOD uint32_t DLL_CALL BU_List_Next(List* list) {
+DLL_FUNCTION(uint32_t) BU_List_Next(List* list) {
 	if (list == NULL)
 		return FALSE;
 
@@ -171,7 +170,7 @@ DLL_METHOD uint32_t DLL_CALL BU_List_Next(List* list) {
 	return TRUE;
 }
 
-DLL_METHOD uint32_t DLL_CALL BU_List_Before(List* list, BBTypeElement* other) {
+DLL_FUNCTION(uint32_t) BU_List_Before(List* list, BBTypeElement* other) {
 	if (list == NULL)
 		return FALSE;
 	if (other == NULL)
@@ -195,7 +194,7 @@ DLL_METHOD uint32_t DLL_CALL BU_List_Before(List* list, BBTypeElement* other) {
 	return TRUE;
 }
 
-DLL_METHOD uint32_t DLL_CALL BU_List_After(List* list, BBTypeElement* other) {
+DLL_FUNCTION(uint32_t) BU_List_After(List* list, BBTypeElement* other) {
 	if (list == NULL)
 		return FALSE;
 	if (other == NULL)
@@ -219,11 +218,11 @@ DLL_METHOD uint32_t DLL_CALL BU_List_After(List* list, BBTypeElement* other) {
 	return TRUE;
 }
 
-DLL_METHOD void DLL_CALL BU_List_Insert(List* list, BBTypeElement* element) {
+DLL_FUNCTION(void) BU_List_Insert(List* list, BBTypeElement* element) {
 	BU_List_InsertEx(list, element, NULL);
 }
 
-DLL_METHOD void DLL_CALL BU_List_InsertEx(List* list, BBTypeElement* element, BBTypeElement* other) {
+DLL_FUNCTION(void) BU_List_InsertEx(List* list, BBTypeElement* element, BBTypeElement* other) {
 	if (list == NULL)
 		return;
 
@@ -253,7 +252,7 @@ DLL_METHOD void DLL_CALL BU_List_InsertEx(List* list, BBTypeElement* element, BB
 	element->type = list->fakeType;
 }
 
-DLL_METHOD void DLL_CALL BU_List_Remove(List* list, BBTypeElement* element) {
+DLL_FUNCTION(void) BU_List_Remove(List* list, BBTypeElement* element) {
 	if (list == NULL)
 		return;
 	if (element == NULL)

@@ -13,6 +13,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{C08C5F9A-0C63-4798-A93F-FE96C014074B}</ProjectGuid>
     <RootNamespace>BlitzUtility</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -39,32 +40,30 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)\#Build\$(ProjectName)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)\#Intermediate\$(ProjectName)\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)#Build\$(ProjectName)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)#Intermediate\$(ProjectName)\$(Configuration)\</IntDir>
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)\#Build\$(ProjectName)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)\#Intermediate\$(ProjectName)\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)#Build\$(ProjectName)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)#Intermediate\$(ProjectName)\$(Configuration)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <SDLCheck>
-      </SDLCheck>
       <AdditionalIncludeDirectories>$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <StructMemberAlignment>4Bytes</StructMemberAlignment>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <ForcedIncludeFiles>
       </ForcedIncludeFiles>
       <OpenMPSupport>false</OpenMPSupport>
-      <RuntimeTypeInfo>false</RuntimeTypeInfo>
-      <CreateHotpatchableImage>false</CreateHotpatchableImage>
-      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <CreateHotpatchableImage>true</CreateHotpatchableImage>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
       <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <CompileAsManaged>false</CompileAsManaged>
@@ -75,8 +74,8 @@
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <StringPooling>true</StringPooling>
-      <EnableEnhancedInstructionSet>NoExtensions</EnableEnhancedInstructionSet>
-      <FloatingPointExceptions>false</FloatingPointExceptions>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <FloatingPointExceptions>true</FloatingPointExceptions>
       <UseUnicodeForAssemblerListing>true</UseUnicodeForAssemblerListing>
       <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
@@ -101,8 +100,6 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Full</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>
-      </SDLCheck>
       <AdditionalIncludeDirectories>$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -115,18 +112,19 @@
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
       <MinimalRebuild>false</MinimalRebuild>
-      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
       <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <CompileAsManaged>false</CompileAsManaged>
       <CompileAsWinRT>false</CompileAsWinRT>
       <CallingConvention>Cdecl</CallingConvention>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
       <StringPooling>true</StringPooling>
-      <EnableEnhancedInstructionSet>NoExtensions</EnableEnhancedInstructionSet>
-      <FloatingPointExceptions>false</FloatingPointExceptions>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <FloatingPointExceptions>true</FloatingPointExceptions>
       <UseUnicodeForAssemblerListing>true</UseUnicodeForAssemblerListing>
       <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DebugInformationFormat>None</DebugInformationFormat>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>false</GenerateDebugInformation>
@@ -148,8 +146,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Container\List.h" />
-    <ClInclude Include="dllmain.h" />
+    <ClInclude Include="BlitzUtility.h" />
     <ClInclude Include="Container\TypeList.h" />
+    <ClInclude Include="Database\SQLite\SQLite.h" />
+    <ClInclude Include="Database\SQLite\sqlite3.h" />
+    <ClInclude Include="Time\HighResolutionClock.h" />
+    <ClInclude Include="Time\SystemClock.h" />
+    <ClInclude Include="Time\Time.h" />
     <ClInclude Include="Utility\MassOp.h" />
     <ClInclude Include="Type\Double.h" />
     <ClInclude Include="Type\LongLong.h" />
@@ -161,10 +164,15 @@
   <ItemGroup>
     <ClCompile Include="Container\TypeList.cpp" />
     <ClCompile Include="Container\List.cpp" />
+    <ClCompile Include="Database\SQLite\SQLite.cpp" />
+    <ClCompile Include="Database\SQLite\sqlite3.c" />
+    <ClCompile Include="Time\HighResolutionClock.cpp" />
+    <ClCompile Include="Time\SystemClock.cpp" />
+    <ClCompile Include="Time\Time.cpp" />
     <ClCompile Include="Type\Double.cpp" />
     <ClCompile Include="Type\LongLong.cpp" />
     <ClCompile Include="Utility\IndexerV1.cpp" />
-    <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="BlitzUtility.cpp" />
     <ClCompile Include="Utility\DisplayEnumerator.cpp" />
     <ClCompile Include="Utility\IndexerV2.cpp" />
     <ClCompile Include="Utility\MassOp.cpp" />
@@ -172,11 +180,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="LICENSE">
-      <Link>LICENSE</Link>
+      <Link>BlitzUtility.LICENSE</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="LICENSE.lesser">
-      <Link>LICENSE.lesser</Link>
+      <Link>BlitzUtility.LICENSE.lesser</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="BlitzUtility.bb">

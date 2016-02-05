@@ -1,5 +1,5 @@
 //	BlitzUtility - Expanding the normal Blitz functionality.
-//	Copyright (C) 2015 Project Kube (Michael Fabian Dirks)
+//	Copyright (C) 2015 Xaymar (Michael Fabian Dirks)
 //
 //	This program is free software: you can redistribute it and/or modify
 //	it under the terms of the GNU Lesser General Public License as
@@ -17,7 +17,7 @@
 #pragma once;
 #include "TypeList.h"
 
-DLL_METHOD TypeList* DLL_CALL BU_TypeList_Create(BBTypeElement* element) {
+DLL_FUNCTION(TypeList*) BU_TypeList_Create(BBTypeElement* element) {
 	// Make sure the given element is valid.
 	if (element == NULL)
 		return NULL;
@@ -39,7 +39,7 @@ DLL_METHOD TypeList* DLL_CALL BU_TypeList_Create(BBTypeElement* element) {
 	return list;
 }
 
-DLL_METHOD void DLL_CALL BU_TypeList_Destroy(TypeList* list) {
+DLL_FUNCTION(void) BU_TypeList_Destroy(TypeList* list) {
 	// Make sure we have a valid list.
 	if (list == NULL)
 		return;
@@ -54,7 +54,7 @@ DLL_METHOD void DLL_CALL BU_TypeList_Destroy(TypeList* list) {
 	delete list;
 }
 
-DLL_METHOD void DLL_CALL BU_TypeList_Activate(TypeList* list) {
+DLL_FUNCTION(void) BU_TypeList_Activate(TypeList* list) {
 	// Store current pointers
 	list->storedFirstElement = list->type->used.next;
 	list->storedLastElement = list->type->used.prev;
@@ -64,7 +64,7 @@ DLL_METHOD void DLL_CALL BU_TypeList_Activate(TypeList* list) {
 	list->type->used.prev = list->lastElement;
 }
 
-DLL_METHOD void DLL_CALL BU_TypeList_Deactivate(TypeList* list) {
+DLL_FUNCTION(void) BU_TypeList_Deactivate(TypeList* list) {
 	// Store current pointers
 	list->firstElement = list->type->used.next;
 	list->lastElement = list->type->used.prev;
