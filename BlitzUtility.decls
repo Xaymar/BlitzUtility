@@ -49,10 +49,12 @@ BU_SQLite_Sleep%(ms%)
 ; Open & Close
 BU_SQLite_Open%(file$, db*)
 BU_SQLite_Open_V2%(file$, db*, flags%, zVfs$)
+BU_SQLite_Open_V2Ex%(file$, db*, flags%, zVfs%) : "BU_SQLite_Open_V2"
 BU_SQLite_Close%(db%)
 BU_SQLite_Close_V2%(db%)
 BU_SQLite_OpenSimple%(file$)
 BU_SQLite_OpenSimple_V2%(file$, flags%, zVfs$)
+BU_SQLite_OpenSimple_V2Ex%(file$, flags%, zVfs%) : "BU_SQLite_OpenSimple_V2"
 BU_SQLite_OpenSimpleError%()
 ; Error Handling
 BU_SQLite_Error_Code%(db%)
@@ -71,7 +73,8 @@ BU_SQLite_Release_Memory%(bytes%)
 BU_SQLite_DB_Release_Memory%(db%)
 BU_SQLite_Randomness(n%, pBank*)
 ; Database Management & Modification
-BU_SQLite_Exec%(db%, sql$, pCallback3PIPP, param%, errMsg*)
+BU_SQLite_Exec%(db%, sql$, pCallback3PIPP%, param%, errMsg*)
+BU_SQLite_ExecEx%(db%, sql$, pCallback3PIPP%, param%, errMsg%) : "BU_SQLite_Exec"
 BU_SQLite_Last_Insert_RowId%(db%)
 BU_SQLite_Changes%(db%)
 BU_SQLite_Total_Changes%(db%)
@@ -90,7 +93,9 @@ BU_SQLite_Limit%(db%, id%, newVal%)
 ; Prepared Statements
 BU_SQLite_Next_Statement%(db%, pStmt%)
 BU_SQLite_Prepare%(db%, zSql$, nByte%, ppStmt*)
+BU_SQLite_PrepareEx%(db%, zSql$, nByte%, ppStmt%) : "BU_SQLite_Prepare"
 BU_SQLite_Prepare_V2%(db%, zSql$, nByte%, ppStmt*)
+BU_SQLite_Prepare_V2Ex%(db%, zSql$, nByte%, ppStmt%) : "BU_SQLite_Prepare_V2"
 BU_SQLite_Statement_ReadOnly%(pStmt%)
 BU_SQLite_Statement_Busy%(pStmt%)
 BU_SQLite_Statement_Status%(pStmt%, op%, resetFlag%)

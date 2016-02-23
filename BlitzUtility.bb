@@ -15,6 +15,12 @@
 ;	along with this program.  If not, see <http:;www.gnu.org/licenses/>.
 
 ; Utility ----------------------------------------------------------------------
+;-- Types
+Const BU_TYPES_COMPARE_INEQUAL								= 0
+Const BU_TYPES_COMPARE_EQUAL								= 1
+Const BU_TYPES_COMPARE_SMALLER								= 2
+Const BU_TYPES_COMPARE_GREATER								= 4
+
 ;-- Mass Operation
 ; Constants: Supported Types
 Const BU_MASSOP_TYPE_DOUBLE									= 0

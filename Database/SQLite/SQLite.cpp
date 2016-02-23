@@ -371,7 +371,7 @@ DLL_FUNCTION(const char*) BU_SQLite_Bind_Parameter_Name(sqlite3_stmt* pStmt, int
 }
 
 DLL_FUNCTION(int32_t) BU_SQLite_Bind_Parameter_Index(sqlite3_stmt* pStmt, const char* zName) {
-#pragma comment(linker, "/EXPORT:BU_SQLite_Bind_Parameter_Name=_BU_SQLite_Bind_Parameter_Name@8")
+#pragma comment(linker, "/EXPORT:BU_SQLite_Bind_Parameter_Index=_BU_SQLite_Bind_Parameter_Index@8")
 	return sqlite3_bind_parameter_index(pStmt, zName);
 }
 
@@ -381,66 +381,82 @@ DLL_FUNCTION(int32_t) BU_SQLite_Clear_Bindings(sqlite3_stmt* pStmt) {
 }
 
 DLL_FUNCTION(int32_t) BU_SQLite_Column_Count(sqlite3_stmt* pStmt) {
+#pragma comment(linker, "/EXPORT:BU_SQLite_Column_Count=_BU_SQLite_Column_Count@4")
 	return sqlite3_column_count(pStmt);
 }
 
 DLL_FUNCTION(const char*) BU_SQLite_Column_Name(sqlite3_stmt* pStmt, int32_t n) {
+#pragma comment(linker, "/EXPORT:BU_SQLite_Column_Name=_BU_SQLite_Column_Name@8")
 	return sqlite3_column_name(pStmt, n);
 }
 
 DLL_FUNCTION(const char*) BU_SQLite_Column_DeclaredType(sqlite3_stmt* pStmt, int32_t n) {
+#pragma comment(linker, "/EXPORT:BU_SQLite_Column_DeclaredType=_BU_SQLite_Column_DeclaredType@8")
 	return sqlite3_column_decltype(pStmt, n);
 }
 
 DLL_FUNCTION(int32_t) BU_SQLite_Step(sqlite3_stmt* pStmt) {
+#pragma comment(linker, "/EXPORT:BU_SQLite_Step=_BU_SQLite_Step@4")
 	return sqlite3_step(pStmt);
 }
 
 DLL_FUNCTION(int32_t) BU_SQLite_Data_Count(sqlite3_stmt* pStmt) {
+#pragma comment(linker, "/EXPORT:BU_SQLite_Data_Count=_BU_SQLite_Data_Count@4")
 	return sqlite3_data_count(pStmt);
 }
 
 DLL_FUNCTION(const void*) BU_SQLite_Column_Blob(sqlite3_stmt* pStmt, int32_t iCol) {
+#pragma comment(linker, "/EXPORT:BU_SQLite_Column_Blob=_BU_SQLite_Column_Blob@8")
 	return sqlite3_column_blob(pStmt, iCol);
 }
 
 DLL_FUNCTION(int32_t) BU_SQLite_Column_Bytes(sqlite3_stmt* pStmt, int32_t iCol) {
+#pragma comment(linker, "/EXPORT:BU_SQLite_Column_Bytes=_BU_SQLite_Column_Bytes@8")
 	return sqlite3_column_bytes(pStmt, iCol);
 }
 
 DLL_FUNCTION(float_t) BU_SQLite_Column_Float(sqlite3_stmt* pStmt, int32_t iCol) {
+#pragma comment(linker, "/EXPORT:BU_SQLite_Column_Float=_BU_SQLite_Column_Float@8")
 	return (float_t)sqlite3_column_double(pStmt, iCol);
 }
 
 DLL_FUNCTION(double_t*) BU_SQLite_Column_Double(sqlite3_stmt* pStmt, int32_t iCol) {
+#pragma comment(linker, "/EXPORT:BU_SQLite_Column_Double=_BU_SQLite_Column_Double@8")
 	return new double_t(sqlite3_column_double(pStmt, iCol));
 }
 
 DLL_FUNCTION(int32_t) BU_SQLite_Column_Int(sqlite3_stmt* pStmt, int32_t iCol) {
+#pragma comment(linker, "/EXPORT:BU_SQLite_Column_Int=_BU_SQLite_Column_Int@8")
 	return sqlite3_column_int(pStmt, iCol);
 }
 
 DLL_FUNCTION(int64_t*) BU_SQLite_Column_LongLong(sqlite3_stmt* pStmt, int32_t iCol) {
+#pragma comment(linker, "/EXPORT:BU_SQLite_Column_LongLong=_BU_SQLite_Column_LongLong@8")
 	return new int64_t(sqlite3_column_int64(pStmt, iCol));
 }
 
 DLL_FUNCTION(const char*) BU_SQLite_Column_Text(sqlite3_stmt* pStmt, int32_t iCol) {
+#pragma comment(linker, "/EXPORT:BU_SQLite_Column_Text=_BU_SQLite_Column_Text@8")
 	return (const char*)sqlite3_column_text(pStmt, iCol);
 }
 
 DLL_FUNCTION(sqlite3_value*) BU_SQLite_Column_Value(sqlite3_stmt* pStmt, int32_t iCol) {
+#pragma comment(linker, "/EXPORT:BU_SQLite_Column_Value=_BU_SQLite_Column_Value@8")
 	return sqlite3_column_value(pStmt, iCol);
 }
 
 DLL_FUNCTION(int32_t) BU_SQLite_Column_Type(sqlite3_stmt* pStmt, int32_t iCol) {
+#pragma comment(linker, "/EXPORT:BU_SQLite_Column_Type=_BU_SQLite_Column_Type@8")
 	return sqlite3_column_type(pStmt, iCol);
 }
 
 DLL_FUNCTION(int32_t) BU_SQLite_Finalize(sqlite3_stmt* pStmt) {
+#pragma comment(linker, "/EXPORT:BU_SQLite_Finalize=_BU_SQLite_Finalize@4")
 	return sqlite3_finalize(pStmt);
 }
 
 DLL_FUNCTION(int32_t) BU_SQLite_Reset(sqlite3_stmt* pStmt) {
+#pragma comment(linker, "/EXPORT:BU_SQLite_Reset=_BU_SQLite_Reset@4")
 	return sqlite3_reset(pStmt);
 }
 #pragma endregion Prepared Statements
