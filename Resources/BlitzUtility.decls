@@ -163,73 +163,67 @@ BU_HighResolutionClock_DurationLL%(pHighResolutionClock%, pOther%)
 BU_HighResolutionClock_DurationF#(pHighResolutionClock%, pOther%)
 BU_HighResolutionClock_DurationD%(pHighResolutionClock%, pOther%)
 
-; Types -----------------------------------------------------------------------
-; -- LongLong
-BU_LongLong_Create%()
-BU_LongLong_Destroy(LongLong%)
-BU_LongLong_Copy%(LongLong%)
-BU_LongLong_TempCreate%()
-BU_LongLong_TempCopy%(LongLong%)
-BU_LongLong_SetTemp(LongLong%)
-BU_LongLong_UnsetTemp(LongLong%)
-BU_LongLong_TempCleanup()
-BU_LongLong_Set(LongLong%, LongLongOther%)
-BU_LongLong_SetV(LongLong%, LongHigh%, LongLow%)
-BU_LongLong_Add(LongLong%, LongLongOther%)
-BU_LongLong_AddV(LongLong%, LongHigh%, LongLow%)
-BU_LongLong_Sub(LongLong%, LongLongOther%)
-BU_LongLong_SubV(LongLong%, LongHigh%, LongLow%)
-BU_LongLong_Mul(LongLong%, LongLongOther%)
-BU_LongLong_MulV(LongLong%, LongHigh%, LongLow%)
-BU_LongLong_Div(LongLong%, LongLongOther%)
-BU_LongLong_DivV(LongLong%, LongHigh%, LongLow%)
-BU_LongLong_Modulo(LongLong%, pOther%)
-BU_LongLong_ModuloV(LongLong%, left%, right%)
-BU_LongLong_ShiftLeft(LongLong%, bits%)
-BU_LongLong_ShiftRight(LongLong%, bits%)
-BU_LongLong_Compare%(LongLong%, LongLongOther%)
-BU_LongLong_CompareV%(LongLong%, LongHigh%, LongLow%)
-BU_LongLong_ToString$(LongLong%)
-BU_LongLong_FromString%(String$)
-BU_LongLong_ToLong%(LongLong%, Modulus%)
-BU_LongLong_FromLong%(LongHigh%, LongLow%)
-BU_LongLong_ToLongHigh%(LongLong%)
-BU_LongLong_ToLongLow%(LongLong%)
-BU_LongLong_ToFloat#(LongLong%)
-BU_LongLong_FromFloat%(Float#)
-BU_LongLong_ToDouble%(LongLong%)
-BU_LongLong_FromDouble%(double%)
-BU_LongLong_Serialize$(LongLong%)
-BU_LongLong_Deserialize%(String$)
-; -- Double
-BU_Double_Create%()
-BU_Double_Destroy(Double%)
-BU_Double_Copy%(Double%)
-BU_Double_TempCreate%()
-BU_Double_TempCopy%(Double%)
-BU_Double_SetTemp(Double%)
-BU_Double_UnsetTemp(Double%)
-BU_Double_TempCleanup()
-BU_Double_Set(Double%, DoubleOther%)
-BU_Double_SetF(Double%, Float#)
-BU_Double_Add(Double%, DoubleOther%)
-BU_Double_AddF(Double%, Float#)
-BU_Double_Sub(Double%, DoubleOther%)
-BU_Double_SubF(Double%, Float#)
-BU_Double_Mul(Double%, DoubleOther%)
-BU_Double_MulF(Double%, Float#)
-BU_Double_Div(Double%, DoubleOther%)
-BU_Double_DivF(Double%, Float#)
-BU_Double_Compare%(Double%, DoubleOther%)
-BU_Double_CompareF%(Double%, Float#)
-BU_Double_ToString$(Double%)
-BU_Double_FromString%(String$)
-BU_Double_ToFloat#(Double%)
-BU_Double_FromFloat%(Float#)
-BU_Double_ToLongLong%(Double%)
-BU_Double_FromLongLong%(LongLong%)
-BU_Double_Serialize$(Double%)
-BU_Double_Deserialize%(String$)
+; Types - Long ----------------------------------------------------------------
+BU_Long_New%()																	:"_BU_Long_New@0"
+BU_Long_Copy%(pThis%)															:"_BU_Long_Copy@4"
+BU_Long_Destroy(pThis%)															:"_BU_Long_Destroy@4"
+BU_Long_ToString$(pThis%)														:"_BU_Long_ToString@4"
+BU_Long_FromString%(cString$)													:"_BU_Long_FromString@4"
+BU_Long_FromI%(iRight%)															:"_BU_Long_FromI@4"
+BU_Long_FromII%(iLeft%, iRight%)												:"_BU_Long_FromII@8"
+BU_Long_ToI%(pThis%, iShift%)													:"_BU_Long_ToI@8"
+BU_Long_ToIH%(pThis%)															:"_BU_Long_ToIH@4"
+BU_Long_ToIL%(pThis%)															:"_BU_Long_ToIL@4"
+BU_Long_FromF%(Float#)															:"_BU_Long_FromF@4"
+BU_Long_ToF#(pThis%)															:"_BU_Long_ToF@4"
+BU_Long_FromD(pDouble%)															:"_BU_Long_FromD@4"
+BU_Long_ToD(pThis%)																:"_BU_Long_ToD@4"
+BU_Long_Compare%(pThis%, pRight%)												:"_BU_Long_Compare@8"
+BU_Long_Set%(pThis%, pOther%)													:"_BU_Long_Set@8"
+BU_Long_Add%(pThis%, pOther%)													:"_BU_Long_Add@8"
+BU_Long_Sub%(pThis%, pOther%)													:"_BU_Long_Sub@8"
+BU_Long_Div%(pThis%, pOther%)													:"_BU_Long_Div@8"
+BU_Long_Mul%(pThis%, pOther%)													:"_BU_Long_Mul@8"
+BU_Long_Mod%(pThis%, pOther%)													:"_BU_Long_Mod@8"
+BU_Long_SetI%(pThis%, iRight%)													:"_BU_Long_SetI@8"
+BU_Long_AddI%(pThis%, iRight%)													:"_BU_Long_AddI@8"
+BU_Long_SubI%(pThis%, iRight%)													:"_BU_Long_SubI@8"
+BU_Long_DivI%(pThis%, iRight%)													:"_BU_Long_DivI@8"
+BU_Long_MulI%(pThis%, iRight%)													:"_BU_Long_MulI@8"
+BU_Long_ModI%(pThis%, iRight%)													:"_BU_Long_ModI@8"
+BU_Long_SetII%(pThis%, iLeft%, iRight%)											:"_BU_Long_SetII@12"
+BU_Long_AddII%(pThis%, iLeft%, iRight%)											:"_BU_Long_AddII@12"
+BU_Long_SubII%(pThis%, iLeft%, iRight%)											:"_BU_Long_SubII@12"
+BU_Long_DivII%(pThis%, iLeft%, iRight%)											:"_BU_Long_DivII@12"
+BU_Long_MulII%(pThis%, iLeft%, iRight%)											:"_BU_Long_MulII@12"
+BU_Long_ModII%(pThis%, iLeft%, iRight%)											:"_BU_Long_ModII@12"
+BU_Long_Shift%(pThis%, iRight%)													:"_BU_Long_Shift@8"
+
+; Double ------------------------------------------------------------------------
+BU_Double_New%()																:"_BU_Double_New@0"
+BU_Double_Copy%(pThis%)															:"_BU_Double_Copy@4"
+BU_Double_Destroy(pThis%)														:"_BU_Double_Destroy@4"
+BU_Double_ToString$(pThis%)														:"_BU_Double_ToString@4"
+BU_Double_FromString%(cString$)													:"_BU_Double_FromString@4"
+BU_Double_FromF%(Float#)														:"_BU_Double_FromF@4"
+BU_Double_ToF#(pThis%)															:"_BU_Double_ToF@4"
+BU_Double_FromI%(iRight%)														:"_BU_Double_FromI@4"
+BU_Double_ToI%(pThis%)															:"_BU_Double_ToI@8"
+BU_Double_FromL(pDouble%)														:"_BU_Double_FromL@4"
+BU_Double_ToL(pThis%)															:"_BU_Double_ToL@4"
+BU_Double_Compare%(pThis%, pOther%)												:"_BU_Double_Compare@8"
+BU_Double_Set%(pThis%, pOther%)													:"_BU_Double_Set@8"
+BU_Double_Add%(pThis%, pOther%)													:"_BU_Double_Add@8"
+BU_Double_Sub%(pThis%, pOther%)													:"_BU_Double_Sub@8"
+BU_Double_Div%(pThis%, pOther%)													:"_BU_Double_Div@8"
+BU_Double_Mul%(pThis%, pOther%)													:"_BU_Double_Mul@8"
+BU_Double_Mod%(pThis%, pOther%)													:"_BU_Double_Mod@8"
+BU_Double_SetF%(pThis%, fOther%)												:"_BU_Double_SetF@8"
+BU_Double_AddF%(pThis%, fOther%)												:"_BU_Double_AddF@8"
+BU_Double_SubF%(pThis%, fOther%)												:"_BU_Double_SubF@8"
+BU_Double_DivF%(pThis%, fOther%)												:"_BU_Double_DivF@8"
+BU_Double_MulF%(pThis%, fOther%)												:"_BU_Double_MulF@8"
+BU_Double_ModF%(pThis%, fOther%)												:"_BU_Double_ModF@8"
 
 ; Utility ---------------------------------------------------------------------
 ; -- Display Enumerator

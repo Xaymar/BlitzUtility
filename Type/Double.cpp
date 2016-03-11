@@ -14,175 +14,109 @@
 //	You should have received a copy of the GNU Lesser General Public License
 //	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "Double.h"
-#include <list>
+#include "Long.h"
 
-// Templates
-template< typename T >
-std::string int_to_hex(T i) {
-	std::stringstream stream;
-	stream
-		<< std::setfill('0')
-		<< std::setw(sizeof(T) * 2)
-		<< std::hex
-		<< i;
-	return stream.str();
-}
-
-template< typename T >
-T hex_to_int(std::string t) {
-	T x;
-	std::stringstream stream;
-	stream
-		<< std::hex
-		<< t;
-	stream
-		>> x;
-	return x;
-}
-
-
-std::list<double_t*> BU_DoubleTemporary;
-
-DLL_FUNCTION(double_t*) BU_Double_Create() {
+DLL_FUNCTION(double_t*) BU_Double_New() {
 	return new double_t;
 }
-
-DLL_FUNCTION(void) BU_Double_Destroy(double_t* pthis) {
-	delete pthis;
+DLL_FUNCTION(double_t*) BU_Double_Copy(double_t* pOther) {
+	return new double_t(*pOther);
+}
+DLL_FUNCTION(void) BU_Double_Destroy(double_t* pThis) {
+	delete pThis;
 }
 
-DLL_FUNCTION(double_t*) BU_Double_Copy(double_t* other) {
-	double_t* pthis = new double_t;
-	*pthis = *other;
-	return pthis;
+char* BU_Double_Buffer = new char[32];
+DLL_FUNCTION(const char*) BU_Double_ToString(double_t* pThis) {
+	std::stringstream myStream;
+	myStream << (*pThis);
+
+	const char* myBuffer = myStream.str().c_str();
+	strcpy_s(BU_Double_Buffer, 32, myBuffer);
+	return BU_Double_Buffer;
+}
+DLL_FUNCTION(double_t*) BU_Double_FromString(const char* pString) {
+	double_t* pThis = new double_t;
+	std::stringstream myStream = std::stringstream(pString);
+	myStream >> *pThis;
+	return pThis;
 }
 
-DLL_FUNCTION(double_t*) BU_Double_TempCreate() {
-	double_t* val = new double_t;
-	BU_DoubleTemporary.push_back(val);
-	return val;
+DLL_FUNCTION(double_t*) BU_Double_FromF(float_t fOther) {
+	return new double_t(fOther);
+}
+DLL_FUNCTION(float_t) BU_Double_ToF(double_t* pThis) {
+	return (float_t)*pThis;
 }
 
-DLL_FUNCTION(double_t*) BU_Double_TempCopy(double_t* other) {
-	double_t* val = new double_t(*other);
-	BU_DoubleTemporary.push_back(val);
-	return val;
+DLL_FUNCTION(double_t*) BU_Double_FromI(int32_t iOther) {
+	return new double_t(iOther);
+}
+DLL_FUNCTION(int32_t) BU_Double_ToI(double_t* pThis) {
+	return (int32_t)*pThis;
 }
 
-DLL_FUNCTION(void) BU_Double_SetTemp(double_t* pthis) {
-	BU_DoubleTemporary.push_back(pthis);
+DLL_FUNCTION(double_t*) BU_Double_FromL(int64_t* pOther) {
+	return new double_t((double_t)*pOther);
+}
+DLL_FUNCTION(int64_t*) BU_Double_ToL(double_t* pThis) {
+	return new int64_t((int64_t)*pThis);
 }
 
-DLL_FUNCTION(void) BU_Double_UnsetTemp(double_t* pthis) {
-	BU_DoubleTemporary.remove(pthis);
+DLL_FUNCTION(int32_t) BU_Double_Compare(double_t* pThis, double_t* pOther) {
+	return /* It can either be Equal (0) or Smaller or Greater. Easy to check. */
+		   /* Greater */
+		(*pThis > *pOther ? 1 : 0) +
+		/* Smaller */
+		(*pThis < *pOther ? -1 : 0);
 }
 
-DLL_FUNCTION(void) BU_Double_TempCleanup() {
-	auto iterEnd = BU_DoubleTemporary.end();
-	for (auto iter = BU_DoubleTemporary.begin(); iter != iterEnd; ++iter) {
-		delete *iter;
-	}
-	BU_DoubleTemporary.clear();
+DLL_FUNCTION(double_t*) BU_Double_Set(double_t* pThis, double_t* pOther) {
+	*pThis = *pOther;
+	return pThis;
+}
+DLL_FUNCTION(double_t*) BU_Double_Add(double_t* pThis, double_t* pOther) {
+	*pThis += *pOther;
+	return pThis;
+}
+DLL_FUNCTION(double_t*) BU_Double_Sub(double_t* pThis, double_t* pOther) {
+	*pThis -= *pOther;
+	return pThis;
+}
+DLL_FUNCTION(double_t*) BU_Double_Div(double_t* pThis, double_t* pOther) {
+	*pThis /= *pOther;
+	return pThis;
+}
+DLL_FUNCTION(double_t*) BU_Double_Mul(double_t* pThis, double_t* pOther) {
+	*pThis *= *pOther;
+	return pThis;
+}
+DLL_FUNCTION(double_t*) BU_Double_Mod(double_t* pThis, double_t* pOther) {
+	*pThis = fmod(*pThis, *pOther);
+	return pThis;
 }
 
-DLL_FUNCTION(void) BU_Double_Set(double_t* pthis, double_t* other) {
-	*pthis = *other;
+DLL_FUNCTION(double_t*) BU_Double_SetF(double_t* pThis, float_t fOther) {
+	*pThis = fOther;
+	return pThis;
 }
-
-DLL_FUNCTION(void) BU_Double_SetF(double_t* pthis, float_t other) {
-	*pthis = other;
+DLL_FUNCTION(double_t*) BU_Double_AddF(double_t* pThis, float_t fOther) {
+	*pThis += fOther;
+	return pThis;
 }
-
-DLL_FUNCTION(void) BU_Double_Add(double_t* pthis, double_t* other) {
-	*pthis += *other;
+DLL_FUNCTION(double_t*) BU_Double_SubF(double_t* pThis, float_t fOther) {
+	*pThis -= fOther;
+	return pThis;
 }
-
-DLL_FUNCTION(void) BU_Double_AddF(double_t* pthis, float_t other) {
-	*pthis += other;
+DLL_FUNCTION(double_t*) BU_Double_DivF(double_t* pThis, float_t fOther) {
+	*pThis /= fOther;
+	return pThis;
 }
-
-DLL_FUNCTION(void) BU_Double_Sub(double_t* pthis, double_t* other) {
-	*pthis -= *other;
+DLL_FUNCTION(double_t*) BU_Double_MulF(double_t* pThis, float_t fOther) {
+	*pThis *= fOther;
+	return pThis;
 }
-
-DLL_FUNCTION(void) BU_Double_SubF(double_t* pthis, float_t other) {
-	*pthis -= other;
-}
-
-DLL_FUNCTION(void) BU_Double_Mul(double_t* pthis, double_t* other) {
-	*pthis *= *other;
-}
-
-DLL_FUNCTION(void) BU_Double_MulF(double_t* pthis, float_t other) {
-	*pthis *= other;
-}
-
-DLL_FUNCTION(void) BU_Double_Div(double_t* pthis, double_t* other) {
-	*pthis /= *other;
-}
-
-DLL_FUNCTION(void) BU_Double_DivF(double_t* pthis, float_t other) {
-	*pthis /= other;
-}
-
-DLL_FUNCTION(uint32_t) BU_Double_Compare(double_t* pthis, double_t* other) {
-	return (*pthis == *other ? 1 : 0) + (*pthis < *other ? 2 : 0) + (*pthis > *other ? 4 : 0);
-}
-
-DLL_FUNCTION(uint32_t) BU_Double_CompareF(double_t* pthis, float_t other) {
-	return ((float_t)*pthis == other ? 1 : 0) + ((float_t)*pthis < other ? 2 : 0) + ((float_t)*pthis > other ? 4 : 0);
-}
-
-DLL_FUNCTION(const char*) BU_Double_ToString(double_t* pthis) {
-	std::stringstream stream;
-	stream << *pthis;
-	return stream.str().c_str();
-}
-
-DLL_FUNCTION(double_t*) BU_Double_FromString(const char* text) {
-	std::stringstream stream = std::stringstream(text);
-	double_t* doublePtr = new double_t;
-	stream >> *doublePtr;
-	return doublePtr;
-}
-
-DLL_FUNCTION(float_t) BU_Double_ToFloat(double_t* pthis) {
-	return (float_t)*pthis;
-}
-
-DLL_FUNCTION(double_t*) BU_Double_FromFloat(float_t other) {
-	double_t* val = new double_t;
-	*val = (double_t)other;
-	return val;
-}
-
-DLL_FUNCTION(int64_t*) BU_Double_ToLongLong(double_t* pthis) {
-	int64_t* val = new int64_t;
-	*val = (int64_t)*pthis;
-	return val;
-}
-
-DLL_FUNCTION(double_t*) BU_Double_FromLongLong(int64_t* other) {
-	double_t* val = new double_t;
-	*val = (double_t)*other;
-	return val;
-}
-
-DLL_FUNCTION(const char*) BU_Double_Serialize(double_t* pthis) {
-	union {
-		double_t real;
-		int64_t integer;
-	} myval;
-	myval.real = *pthis;
-	return int_to_hex<int64_t>(myval.integer).c_str();
-}
-
-DLL_FUNCTION(double_t*) BU_Double_Deserialize(const char* text) {
-	union {
-		double_t real;
-		int64_t integer;
-	} myval;
-	myval.integer = hex_to_int<int64_t>(std::string(text));
-	return BU_Double_Copy(&myval.real);
+DLL_FUNCTION(double_t*) BU_Double_ModF(double_t* pThis, float_t fOther) {
+	*pThis = fmod(*pThis, fOther);
+	return pThis;
 }

@@ -26,7 +26,7 @@
 #include <windows.h>
 
 // Macros
-#define DLL_FUNCTION(type) extern "C" type __stdcall
+#define DLL_FUNCTION(type) extern "C" __declspec(dllexport) type __stdcall
 
 // BlitzUtility Includes
 #include "Container/List.h"
@@ -34,7 +34,7 @@
 #include "Database/SQLite/SQLite.h"
 #include "Time/HighResolutionClock.h"
 #include "Type/Double.h"
-#include "Type/LongLong.h"
+#include "Type/Long.h"
 #include "Utility/DisplayEnumerator.h"
 #include "Utility/IndexerV1.h"
 #include "Utility/IndexerV2.h"

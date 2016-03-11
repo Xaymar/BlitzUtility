@@ -8,10 +8,6 @@
     <Filter Include="Source Files\Utility">
       <UniqueIdentifier>{48292af9-63a5-40ae-a447-ad7cecfddd8a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Blitz Files">
-      <UniqueIdentifier>{e8e48b8c-14c2-40b5-b48d-d9b55fe6852d}</UniqueIdentifier>
-      <Extensions>bb;decls;ipf</Extensions>
-    </Filter>
     <Filter Include="Source Files\Container">
       <UniqueIdentifier>{ff6bcb4d-9140-40a9-80dd-3698b63bd1c1}</UniqueIdentifier>
     </Filter>
@@ -27,6 +23,31 @@
     <Filter Include="Source Files\Time">
       <UniqueIdentifier>{5a129704-2426-422d-8a40-c869f58d94cb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{67ecd4f9-8888-4144-a4cc-0102188b329a}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Header Files\Container">
+      <UniqueIdentifier>{61ad793e-f1b8-47c7-97b0-135344745ff4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Database">
+      <UniqueIdentifier>{fe289617-3503-42ab-bee1-85b54cae2f3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Database\SQLite">
+      <UniqueIdentifier>{229e6434-139d-476e-91d4-1ff4e46906ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Time">
+      <UniqueIdentifier>{e54a8406-e6ab-4f0b-89a4-5a2385d61d8d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Type">
+      <UniqueIdentifier>{83cba243-3e88-472d-a5b8-d0339ff1d72e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Utility">
+      <UniqueIdentifier>{35a5e71b-a977-4fa1-8428-25a0bade6db2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{13f1a82e-2123-4652-a573-2dd8235ae033}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Utility\WindowMessageHandler.cpp">
@@ -39,9 +60,6 @@
       <Filter>Source Files\Utility</Filter>
     </ClCompile>
     <ClCompile Include="Type\Double.cpp">
-      <Filter>Source Files\Type</Filter>
-    </ClCompile>
-    <ClCompile Include="Type\LongLong.cpp">
       <Filter>Source Files\Type</Filter>
     </ClCompile>
     <ClCompile Include="Utility\MassOp.cpp">
@@ -74,62 +92,69 @@
     <ClCompile Include="Time\Time.cpp">
       <Filter>Source Files\Time</Filter>
     </ClCompile>
+    <ClCompile Include="Type\Long.cpp">
+      <Filter>Source Files\Type</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Utility\WindowMessageHandler.h">
-      <Filter>Source Files\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="Utility\IndexerV1.h">
-      <Filter>Source Files\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="Utility\IndexerV2.h">
-      <Filter>Source Files\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="Type\Double.h">
-      <Filter>Source Files\Type</Filter>
-    </ClInclude>
-    <ClInclude Include="Type\LongLong.h">
-      <Filter>Source Files\Type</Filter>
-    </ClInclude>
-    <ClInclude Include="Utility\MassOp.h">
-      <Filter>Source Files\Utility</Filter>
+    <ClInclude Include="BlitzUtility.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Container\List.h">
-      <Filter>Source Files\Container</Filter>
+      <Filter>Header Files\Container</Filter>
     </ClInclude>
     <ClInclude Include="Container\TypeList.h">
-      <Filter>Source Files\Container</Filter>
-    </ClInclude>
-    <ClInclude Include="Utility\DisplayEnumerator.h">
-      <Filter>Source Files\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="BlitzUtility.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files\Container</Filter>
     </ClInclude>
     <ClInclude Include="Database\SQLite\SQLite.h">
-      <Filter>Source Files\Database\SQLite</Filter>
-    </ClInclude>
-    <ClInclude Include="Time\HighResolutionClock.h">
-      <Filter>Source Files\Time</Filter>
+      <Filter>Header Files\Database\SQLite</Filter>
     </ClInclude>
     <ClInclude Include="Database\SQLite\sqlite3.h">
-      <Filter>Source Files\Database\SQLite</Filter>
+      <Filter>Header Files\Database\SQLite</Filter>
+    </ClInclude>
+    <ClInclude Include="Time\HighResolutionClock.h">
+      <Filter>Header Files\Time</Filter>
     </ClInclude>
     <ClInclude Include="Time\SystemClock.h">
-      <Filter>Source Files\Time</Filter>
+      <Filter>Header Files\Time</Filter>
     </ClInclude>
     <ClInclude Include="Time\Time.h">
-      <Filter>Source Files\Time</Filter>
+      <Filter>Header Files\Time</Filter>
+    </ClInclude>
+    <ClInclude Include="Type\Double.h">
+      <Filter>Header Files\Type</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\DisplayEnumerator.h">
+      <Filter>Header Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\IndexerV1.h">
+      <Filter>Header Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\IndexerV2.h">
+      <Filter>Header Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\MassOp.h">
+      <Filter>Header Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\WindowMessageHandler.h">
+      <Filter>Header Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Type\Long.h">
+      <Filter>Header Files\Type</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="BlitzUtility.bb">
-      <Filter>Blitz Files</Filter>
+    <None Include="Resources\BlitzUtility.bb">
+      <Filter>Resource Files</Filter>
     </None>
-    <None Include="BlitzUtility.decls">
-      <Filter>Blitz Files</Filter>
+    <None Include="Resources\BlitzUtility.decls">
+      <Filter>Resource Files</Filter>
     </None>
-    <None Include="LICENSE" />
-    <None Include="LICENSE.lesser" />
+    <None Include="Resources\BlitzUtility.LICENSE">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\BlitzUtility.LICENSE.lesser">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

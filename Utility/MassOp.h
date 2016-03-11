@@ -17,10 +17,9 @@
 #pragma once
 #include "BlitzUtility.h"
 #include "Type\Double.h"
-#include "Type\LongLong.h"
 
 enum MassOpType {
-	LongLong	= 0,
+	Long = 0,
 	Double		= 1,
 
 	Vector2		= 10,

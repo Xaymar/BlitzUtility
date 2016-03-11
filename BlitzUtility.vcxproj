@@ -42,12 +42,11 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)#Build\$(ProjectName)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)#Intermediate\$(ProjectName)\$(Configuration)\</IntDir>
-    <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)#Build\$(ProjectName)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)#Intermediate\$(ProjectName)\$(Configuration)\</IntDir>
-    <LinkIncremental>false</LinkIncremental>
+    <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -78,22 +77,28 @@
       <FloatingPointExceptions>true</FloatingPointExceptions>
       <UseUnicodeForAssemblerListing>true</UseUnicodeForAssemblerListing>
       <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ControlFlowGuard>false</ControlFlowGuard>
+      <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <Version>1.0</Version>
+      <GenerateDebugInformation>Debug</GenerateDebugInformation>
       <LinkStatus>
       </LinkStatus>
       <CreateHotPatchableImage>Enabled</CreateHotPatchableImage>
       <EnableCOMDATFolding>false</EnableCOMDATFolding>
       <FixedBaseAddress>false</FixedBaseAddress>
+      <LargeAddressAware>false</LargeAddressAware>
+      <OptimizeReferences>false</OptimizeReferences>
+      <LinkTimeCodeGeneration>
+      </LinkTimeCodeGeneration>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <FullProgramDatabaseFile>true</FullProgramDatabaseFile>
     </Link>
     <CustomBuildStep>
       <Message>Copying Resources</Message>
     </CustomBuildStep>
-    <ProjectReference>
-      <LinkLibraryDependencies>false</LinkLibraryDependencies>
-    </ProjectReference>
+    <ProjectReference />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -109,7 +114,7 @@
       </ForcedIncludeFiles>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <OpenMPSupport>false</OpenMPSupport>
-      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
       <MinimalRebuild>false</MinimalRebuild>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -125,24 +130,27 @@
       <UseUnicodeForAssemblerListing>true</UseUnicodeForAssemblerListing>
       <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DebugInformationFormat>None</DebugInformationFormat>
+      <ControlFlowGuard>false</ControlFlowGuard>
+      <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
     </ClCompile>
     <Link>
-      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <GenerateDebugInformation>No</GenerateDebugInformation>
       <EnableCOMDATFolding>false</EnableCOMDATFolding>
-      <OptimizeReferences>
-      </OptimizeReferences>
-      <Version>1.0</Version>
+      <OptimizeReferences>false</OptimizeReferences>
       <LinkStatus>
       </LinkStatus>
       <CreateHotPatchableImage>Enabled</CreateHotPatchableImage>
       <FixedBaseAddress>false</FixedBaseAddress>
+      <LargeAddressAware>false</LargeAddressAware>
+      <LinkTimeCodeGeneration>
+      </LinkTimeCodeGeneration>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <FullProgramDatabaseFile>false</FullProgramDatabaseFile>
     </Link>
     <CustomBuildStep>
       <Message>Copying Resources</Message>
     </CustomBuildStep>
-    <ProjectReference>
-      <LinkLibraryDependencies>false</LinkLibraryDependencies>
-    </ProjectReference>
+    <ProjectReference />
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Container\List.h" />
@@ -155,7 +163,7 @@
     <ClInclude Include="Time\Time.h" />
     <ClInclude Include="Utility\MassOp.h" />
     <ClInclude Include="Type\Double.h" />
-    <ClInclude Include="Type\LongLong.h" />
+    <ClInclude Include="Type\Long.h" />
     <ClInclude Include="Utility\IndexerV1.h" />
     <ClInclude Include="Utility\DisplayEnumerator.h" />
     <ClInclude Include="Utility\IndexerV2.h" />
@@ -170,7 +178,7 @@
     <ClCompile Include="Time\SystemClock.cpp" />
     <ClCompile Include="Time\Time.cpp" />
     <ClCompile Include="Type\Double.cpp" />
-    <ClCompile Include="Type\LongLong.cpp" />
+    <ClCompile Include="Type\Long.cpp" />
     <ClCompile Include="Utility\IndexerV1.cpp" />
     <ClCompile Include="BlitzUtility.cpp" />
     <ClCompile Include="Utility\DisplayEnumerator.cpp" />
@@ -179,23 +187,17 @@
     <ClCompile Include="Utility\WindowMessageHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="LICENSE">
-      <Link>BlitzUtility.LICENSE</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="LICENSE.lesser">
-      <Link>BlitzUtility.LICENSE.lesser</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="BlitzUtility.bb">
-      <Link>BlitzUtility.bb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="BlitzUtility.decls">
-      <Link>BlitzUtility.decls</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="Resources\BlitzUtility.bb" />
+    <None Include="Resources\BlitzUtility.decls" />
+    <None Include="Resources\BlitzUtility.LICENSE" />
+    <None Include="Resources\BlitzUtility.LICENSE.lesser" />
   </ItemGroup>
+  <Target Name="CopyResources" AfterTargets="Build">
+    <ItemGroup>
+      <Resources Include="$(ProjectDir)\Resources\**\*.*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(Resources)" DestinationFiles="@(Resources->'$(TargetDir)%(RecursiveDir)\%(Filename)%(Extension)')" SkipUnchangedFiles="True" UseHardlinksIfPossible="True" />
+  </Target>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

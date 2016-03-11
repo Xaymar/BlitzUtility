@@ -117,22 +117,13 @@ DLL_FUNCTION(void) BU_MassOp_Run(MassOp* massop) {
 					case Double:
 						switch (instr->code) {
 							case Create:
-								instr->result = (uint32_t) BU_Double_Create();
+								instr->result = (uint32_t) BU_Double_New();
 								break;
 							case Destroy:
 								BU_Double_Destroy((double_t*)instr->leftOperand);
 								break;
 							case Copy:
 								instr->result = (uint32_t) BU_Double_Copy((double_t*)instr->leftOperand);
-								break;
-							case TempCreate:
-								instr->result = (uint32_t) BU_Double_TempCreate();
-								break;
-							case TempCopy:
-								instr->result = (uint32_t) BU_Double_TempCopy((double_t*)instr->leftOperand);
-								break;
-							case TempCleanup:
-								BU_Double_TempCleanup();
 								break;
 							case Set:
 								BU_Double_Set((double_t*)instr->leftOperand, (double_t*)instr->rightOperand);
@@ -154,43 +145,34 @@ DLL_FUNCTION(void) BU_MassOp_Run(MassOp* massop) {
 								break;
 						}
 						break;
-					case LongLong:
+					case Long:
 						switch (instr->code) {
 							case Create:
-								instr->result = (uint32_t) BU_LongLong_Create();
+								instr->result = (uint32_t) BU_Long_New();
 								break;
 							case Destroy:
-								BU_LongLong_Destroy((int64_t*)instr->leftOperand);
+								BU_Long_Destroy((int64_t*)instr->leftOperand);
 								break;
 							case Copy:
-								instr->result = (uint32_t) BU_LongLong_Copy((int64_t*)instr->leftOperand);
-								break;
-							case TempCreate:
-								instr->result = (uint32_t) BU_LongLong_TempCreate();
-								break;
-							case TempCopy:
-								instr->result = (uint32_t) BU_LongLong_TempCopy((int64_t*)instr->leftOperand);
-								break;
-							case TempCleanup:
-								BU_LongLong_TempCleanup();
+								instr->result = (uint32_t) BU_Long_Copy((int64_t*)instr->leftOperand);
 								break;
 							case Set:
-								BU_LongLong_Set((int64_t*)instr->leftOperand, (int64_t*)instr->rightOperand);
+								BU_Long_Set((int64_t*)instr->leftOperand, (int64_t*)instr->rightOperand);
 								break;
 							case Add:
-								BU_LongLong_Add((int64_t*)instr->leftOperand, (int64_t*)instr->rightOperand);
+								BU_Long_Add((int64_t*)instr->leftOperand, (int64_t*)instr->rightOperand);
 								break;
 							case Sub:
-								BU_LongLong_Sub((int64_t*)instr->leftOperand, (int64_t*)instr->rightOperand);
+								BU_Long_Sub((int64_t*)instr->leftOperand, (int64_t*)instr->rightOperand);
 								break;
 							case Mul:
-								BU_LongLong_Mul((int64_t*)instr->leftOperand, (int64_t*)instr->rightOperand);
+								BU_Long_Mul((int64_t*)instr->leftOperand, (int64_t*)instr->rightOperand);
 								break;
 							case Div:
-								BU_LongLong_Div((int64_t*)instr->leftOperand, (int64_t*)instr->rightOperand);
+								BU_Long_Div((int64_t*)instr->leftOperand, (int64_t*)instr->rightOperand);
 								break;
 							case Compare:
-								instr->result = BU_LongLong_Compare((int64_t*)instr->leftOperand, (int64_t*)instr->rightOperand);
+								instr->result = BU_Long_Compare((int64_t*)instr->leftOperand, (int64_t*)instr->rightOperand);
 								break;
 						}
 						break;
