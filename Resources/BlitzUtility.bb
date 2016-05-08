@@ -153,8 +153,9 @@ Function BU_Helper_Window_MakeBorderless(HWND=0)
 	newH = clientH
 	
 	; Apply changes
-	BU_User32_SetWindowLong HWND, -16, $01000000
-	BU_User32_SetWindowPos HWND, 0, newX, newY, newW, newH, $4 + $10 + $20 + $40
+	BU_User32_SetWindowLong HWND, -16, $10000000
+	BU_User32_SetWindowLong HWND, -20, $02840020
+	BU_User32_SetWindowPos HWND, 0, newX, newY, newW, newH, $2074
 End Function
 
 Function BU_Helper_Window_Center(HWND=0, Monitor=0)
@@ -527,6 +528,3 @@ Function Vector3_Create.Vector3(X#, Y#, Z#)
 	Return vec
 End Function
 
-
-;~IDEal Editor Parameters:
-;~C#Blitz3D

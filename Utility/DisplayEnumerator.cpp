@@ -42,7 +42,7 @@ DLL_FUNCTION(uint32_t) BU_DisplayEnumerator_Count(DisplayEnumerator* displayEnum
 	return displayEnumerator->displays.size();
 }
 
-DLL_FUNCTION(void) BU_DisplayEnumerator_Retrieve(DisplayEnumerator* displayEnumerator, uint32_t index, PRECT display) {
+DLL_FUNCTION(void) BU_DisplayEnumerator_Retrieve(DisplayEnumerator* displayEnumerator, uint32_t index, LPRECT display) {
 	// Retrieve the requested index.
 	auto iterator = displayEnumerator->displays.begin();
 	std::advance(iterator, index);

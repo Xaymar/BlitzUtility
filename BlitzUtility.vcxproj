@@ -79,7 +79,7 @@
       <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ControlFlowGuard>false</ControlFlowGuard>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>Debug</GenerateDebugInformation>
@@ -158,6 +158,7 @@
     <ClInclude Include="Container\TypeList.h" />
     <ClInclude Include="Database\SQLite\SQLite.h" />
     <ClInclude Include="Database\SQLite\sqlite3.h" />
+    <ClInclude Include="Timer.h" />
     <ClInclude Include="Time\HighResolutionClock.h" />
     <ClInclude Include="Time\SystemClock.h" />
     <ClInclude Include="Time\Time.h" />
@@ -174,6 +175,7 @@
     <ClCompile Include="Container\List.cpp" />
     <ClCompile Include="Database\SQLite\SQLite.cpp" />
     <ClCompile Include="Database\SQLite\sqlite3.c" />
+    <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Time\HighResolutionClock.cpp" />
     <ClCompile Include="Time\SystemClock.cpp" />
     <ClCompile Include="Time\Time.cpp" />

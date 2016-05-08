@@ -27,12 +27,7 @@ BOOL CALLBACK BU_DisplayEnumerator_Callback(HMONITOR hMonitor, HDC hdcMonitor, L
 
 // Exported functions.
 DLL_FUNCTION(DisplayEnumerator*) BU_DisplayEnumerator_Create();
-#pragma comment(linker, "/EXPORT:BU_DisplayEnumerator_Create=_BU_DisplayEnumerator_Create@0")
 DLL_FUNCTION(void) BU_DisplayEnumerator_Destroy(DisplayEnumerator* displayEnumerator);
-#pragma comment(linker, "/EXPORT:BU_DisplayEnumerator_Destroy=_BU_DisplayEnumerator_Destroy@4")
 DLL_FUNCTION(uint32_t) BU_DisplayEnumerator_Enumerate(DisplayEnumerator* displayEnumerator);
-#pragma comment(linker, "/EXPORT:BU_DisplayEnumerator_Enumerate=_BU_DisplayEnumerator_Enumerate@4")
 DLL_FUNCTION(uint32_t) BU_DisplayEnumerator_Count(DisplayEnumerator* displayEnumerator);
-#pragma comment(linker, "/EXPORT:BU_DisplayEnumerator_Count=_BU_DisplayEnumerator_Count@4")
 DLL_FUNCTION(void) BU_DisplayEnumerator_Retrieve(DisplayEnumerator* displayEnumerator, uint32_t index, LPRECT display);
-#pragma comment(linker, "/EXPORT:BU_DisplayEnumerator_Retrieve=_BU_DisplayEnumerator_Retrieve@12")

@@ -95,6 +95,9 @@
     <ClCompile Include="Type\Long.cpp">
       <Filter>Source Files\Type</Filter>
     </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>Source Files\Time</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BlitzUtility.h">
@@ -141,6 +144,9 @@
     </ClInclude>
     <ClInclude Include="Type\Long.h">
       <Filter>Header Files\Type</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>Header Files\Time</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

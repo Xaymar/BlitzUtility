@@ -29,7 +29,7 @@ BU_List_Insert(list%, element*)
 BU_List_InsertEx(list%, element*, other*)
 BU_List_Remove(list%, element*)
 ; -- TypeList (Single Type)
-BU_TypeList_New%(obj*)
+BU_TypeList_Create%(obj*)
 BU_TypeList_Activate(list%)
 BU_TypeList_Deactivate(list%)
 BU_TypeList_Destroy(list%)
@@ -150,6 +150,10 @@ BU_Time_Now%()
 BU_Time_Create%(seconds%, minutes%, hours%, days%, months%, years%, isDST%)
 BU_Time_Destroy(pTime%)
 BU_Time_Format$(pTime%, formatString$)
+; -- Timer
+BU_Timer_Create%(Interval%, hwnd%) : "_BU_Timer_Create@8"
+BU_Timer_Destroy%(Timer%) : "_BU_Timer_Destroy@4"
+BU_Timer_Wait%(Timer%) : "_BU_Timer_Wait@4"
 ; -- SystemClock
 BU_SystemClock_Now%()
 BU_SystemClock_Destroy(pSystemClock%)
@@ -227,11 +231,11 @@ BU_Double_ModF%(pThis%, fOther%)												:"_BU_Double_ModF@8"
 
 ; Utility ---------------------------------------------------------------------
 ; -- Display Enumerator
-BU_DisplayEnumerator_Create%()
-BU_DisplayEnumerator_Destroy(DisplayEnumerator%)
-BU_DisplayEnumerator_Enumerate%(DisplayEnumerator%)
-BU_DisplayEnumerator_Count%(DisplayEnumerator%)
-BU_DisplayEnumerator_Retrieve(DisplayEnumerator%, index%, Rect*)
+BU_DisplayEnumerator_Create%()													:"_BU_DisplayEnumerator_Create@0"
+BU_DisplayEnumerator_Destroy(DisplayEnumerator%)								:"_BU_DisplayEnumerator_Destroy@4"
+BU_DisplayEnumerator_Enumerate%(DisplayEnumerator%)								:"_BU_DisplayEnumerator_Enumerate@4"
+BU_DisplayEnumerator_Count%(DisplayEnumerator%)									:"_BU_DisplayEnumerator_Count@4"
+BU_DisplayEnumerator_Retrieve(DisplayEnumerator%, index%, Rect*)				:"_BU_DisplayEnumerator_Retrieve@12"
 ; -- Indexer V1 (Array)
 BU_IndexerV1_Create%()
 BU_IndexerV1_Destroy(Indexer%)

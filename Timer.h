@@ -16,10 +16,8 @@
 
 #pragma once
 #include "BlitzUtility.h"
-#include <chrono>
-#include <time.h>
+#include <map>
 
-DLL_FUNCTION(time_t*) BU_Time_Now();
-DLL_FUNCTION(time_t*) BU_Time_Create(uint32_t seconds, uint32_t minutes, uint32_t hours, uint32_t days, uint32_t months, uint32_t years, uint32_t isDaylightSavings);
-DLL_FUNCTION(void) BU_Time_Destroy(time_t* pTime);
-DLL_FUNCTION(const char*) BU_Time_Format(time_t* pTime, const char* pchFormatString);
+//DLL_FUNCTION(int32_t) BU_Timer_Create(uint32_t Interval);
+//DLL_FUNCTION(void) BU_Timer_Destroy(uint32_t Id);
+//DLL_FUNCTION(int32_t) BU_Timer_Wait(uint32_t Id);
