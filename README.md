@@ -1,4 +1,5 @@
 # BlitzUtility
+
 BlitzUtility is aimed at extending Blitz beyond it's initial capabilities and is a sub-project of BlitzExtensions.
 All functions assume that you are passing valid parameters and do no extra checking to reduce performance impact.
 
@@ -171,3 +172,12 @@ Easily handle messages sent to Blitz windows using these functions. May not work
 * Count% = BU_WindowMessageHandler_Message_Close%(hwnd%)
 * Count% = BU_WindowMessageHandler_Message_Destroy%(hwnd%)
 * Count% = BU_WindowMessageHandler_Message_Resize%(hwnd%, point*)
+
+# License
+Copyright (C) 2015 Xaymar (Michael Fabian Dirks)
+
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
