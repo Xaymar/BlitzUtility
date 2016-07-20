@@ -48,6 +48,12 @@
     <Filter Include="Resource Files">
       <UniqueIdentifier>{13f1a82e-2123-4652-a573-2dd8235ae033}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\System">
+      <UniqueIdentifier>{5545a0db-1127-4588-8522-680ec51473e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\System">
+      <UniqueIdentifier>{c14c025c-cae9-4d80-abe0-f04895a8f944}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Utility\WindowMessageHandler.cpp">
@@ -95,8 +101,17 @@
     <ClCompile Include="Type\Long.cpp">
       <Filter>Source Files\Type</Filter>
     </ClCompile>
-    <ClCompile Include="Timer.cpp">
+    <ClCompile Include="Utility\ThreadWrapper.cpp">
+      <Filter>Source Files\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="System\Threading.cpp">
+      <Filter>Source Files\System</Filter>
+    </ClCompile>
+    <ClCompile Include="Time\Timer.cpp">
       <Filter>Source Files\Time</Filter>
+    </ClCompile>
+    <ClCompile Include="System\FileSystem.cpp">
+      <Filter>Source Files\System</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -145,8 +160,17 @@
     <ClInclude Include="Type\Long.h">
       <Filter>Header Files\Type</Filter>
     </ClInclude>
-    <ClInclude Include="Timer.h">
+    <ClInclude Include="Utility\ThreadWrapper.h">
+      <Filter>Header Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Threading.h">
+      <Filter>Header Files\System</Filter>
+    </ClInclude>
+    <ClInclude Include="Time\Timer.h">
       <Filter>Header Files\Time</Filter>
+    </ClInclude>
+    <ClInclude Include="System\FileSystem.h">
+      <Filter>Header Files\System</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

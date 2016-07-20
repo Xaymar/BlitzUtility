@@ -44,18 +44,14 @@ DLL_FUNCTION(void) BU_Time_Destroy(time_t* pTime) {
 	delete pTime;
 }
 
+char* BU_Time_Format_Buffer = new char[1024];
 DLL_FUNCTION(const char*) BU_Time_Format(time_t* pTime, const char* pchFormatString) {
 #pragma comment(linker, "/EXPORT:BU_Time_Format=_BU_Time_Format@8")
-	std::string buffer;
 	tm* pTM = new tm;
 	localtime_s(pTM, pTime);
 	
-	uint32_t length = strlen(pchFormatString);
-	buffer.resize(length);
-	while (strftime(&buffer[0], buffer.size(), pchFormatString, pTM) == 0) {
-		buffer.resize(buffer.size() * 2);
-	}
-
+	strftime(BU_Time_Format_Buffer, 1024, pchFormatString, pTM);
 	delete pTM;
-	return buffer.c_str();
+
+	return BU_Time_Format_Buffer;
 }

@@ -86,7 +86,7 @@ End Type
 
 Function BU_Helper_Window_LockPointer(HWND% = 0)
 	If HWND = 0 Then
-		BU_User32_ClipCursor(0)
+		BU_User32_ClipCursorEx(0)
 	Else
 		Local tRect.BU_Rectangle = New BU_Rectangle
 		
@@ -105,6 +105,8 @@ Function BU_Helper_Window_LockPointer(HWND% = 0)
 End Function
 
 Function BU_Helper_Window_LockPointerAuto(HWND=0)
+	If HWND = 0 Then HWND = SystemProperty("AppHwnd")
+	
 	If BU_User32_GetActiveWindow() = HWND Then
 		BU_Helper_Window_LockPointer(HWND)
 	Else
@@ -159,6 +161,8 @@ Function BU_Helper_Window_MakeBorderless(HWND=0)
 End Function
 
 Function BU_Helper_Window_Center(HWND=0, Monitor=0)
+	If HWND = 0 Then HWND = SystemProperty("AppHwnd")
+	
 	Local displayEnumerator = BU_DisplayEnumerator_Create()
 	Local displayAmount = BU_DisplayEnumerator_Enumerate(displayEnumerator)
 	If Monitor >= displayAmount Then Monitor = displayAmount - 1
@@ -195,6 +199,8 @@ Function BU_Helper_Window_Center(HWND=0, Monitor=0)
 End Function
 
 Function BU_Helper_Window_Fill(HWND=0, Monitor=0)
+	If HWND = 0 Then HWND = SystemProperty("AppHwnd")
+	
 	Local displayEnumerator = BU_DisplayEnumerator_Create()
 	Local displayAmount = BU_DisplayEnumerator_Enumerate(displayEnumerator)
 	If Monitor >= displayAmount Then Monitor = displayAmount - 1

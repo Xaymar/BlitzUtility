@@ -15,8 +15,9 @@
 ;	along with this program.  If not, see <http:;www.gnu.org/licenses/>.
 
 .lib "BlitzUtility.dll"
-; Container -------------------------------------------------------------------
-; -- List (Single Element)
+;----------------------------------------------------------------
+;! Container - List (Element-wide)
+;----------------------------------------------------------------
 BU_List_Create%(element*)
 BU_List_Destroy%(list%)
 BU_List_First%(list%)
@@ -28,11 +29,99 @@ BU_List_After%(list%, other*)
 BU_List_Insert(list%, element*)
 BU_List_InsertEx(list%, element*, other*)
 BU_List_Remove(list%, element*)
-; -- TypeList (Single Type)
+
+;----------------------------------------------------------------
+;! Container - TypeList (Type-wide)
+;----------------------------------------------------------------
 BU_TypeList_Create%(obj*)
 BU_TypeList_Activate(list%)
 BU_TypeList_Deactivate(list%)
 BU_TypeList_Destroy(list%)
+
+;----------------------------------------------------------------
+;! System - FileSystem
+;----------------------------------------------------------------
+BU_FileSystem_WriteFile%(Path$)
+;@desc: Opens or creates a file for writing only. Truncates existing content.
+BU_FileSystem_OpenFile%(Path$)
+;@desc: Opens an existing file for reading or writing.
+BU_FileSystem_ReadFile%(Path$)
+;@desc: Opens an existing file for reading only.
+BU_FileSystem_CloseFile(File%)
+;@desc: Closes an open file.
+BU_FileSystem_FlushFile(File%)
+;@desc: Flushes all buffers to disk for the file.
+BU_FileSystem_EOF%(File%)
+;@desc: Checks if the File handle is valid and not at the end of the file.
+;@return:
+; 0 = Good, Not End Of File
+; 1 = End Of File
+; -1 = Bad File Handle
+; -2 = Failed to do internal action.
+BU_FileSystem_SeekFile(File%, Pos%)
+BU_FileSystem_SeekFileIn(File%, Pos%)
+BU_FileSystem_SeekFileOut(File%, Pos%)
+BU_FileSystem_FilePos%(File%) : "BU_FileSystem_FilePosIn"
+BU_FileSystem_FilePosIn%(File%)
+BU_FileSystem_FilePosOut%(File%)
+
+BU_FileSystem_WriteByte(File%, Value%)
+BU_FileSystem_ReadByte%(File%)
+BU_FileSystem_WriteShort(File%, Value%)
+BU_FileSystem_ReadShort%(File%)
+BU_FileSystem_WriteInt(File%, Value%)
+BU_FileSystem_ReadInt%(File%)
+BU_FileSystem_WriteFloat(File%, Value#) : "BU_FileSystem_WriteInt"
+BU_FileSystem_ReadFloat#(File%) : "BU_FileSystem_ReadInt"
+
+;----------------------------------------------------------------
+;! System - Threading
+;----------------------------------------------------------------
+BU_Thread_Create%(pFunction%, pData%, uiStackSize%, bIsSuspended%)
+BU_Thread_Destroy(pThread%)
+BU_Thread_Terminate(pThread%, iExitCode%)
+BU_Thread_Suspend%(pThread%)
+BU_Thread_Resume%(pThread%)
+BU_Thread_Wait%(pThread%, iTimeout%)
+BU_Thread_GetExitCode%(pThread%)
+BU_Thread_Exit(iExitCode%)
+BU_Mutex_Create%()
+BU_Mutex_Destroy(pMutex%)
+BU_Mutex_Lock%(pMutex%, iTimeout%)
+BU_Mutex_Unlock%(pMutex%)
+
+;----------------------------------------------------------------
+;! Time - Time
+;----------------------------------------------------------------
+BU_Time_Now%()
+BU_Time_Create%(seconds%, minutes%, hours%, days%, months%, years%, isDST%)
+BU_Time_Destroy(pTime%)
+BU_Time_Format$(pTime%, formatString$)
+
+;----------------------------------------------------------------
+;! Time - Timer
+;----------------------------------------------------------------
+BU_Timer_Create%(Interval%, hwnd%) : "_BU_Timer_Create@8"
+BU_Timer_Destroy%(Timer%) : "_BU_Timer_Destroy@4"
+BU_Timer_Wait%(Timer%) : "_BU_Timer_Wait@4"
+
+;----------------------------------------------------------------
+;! Time - SystemClock
+;----------------------------------------------------------------
+BU_SystemClock_Now%()
+BU_SystemClock_Destroy(pSystemClock%)
+BU_SystemClock_FromTime%(pTime%)
+BU_SystemClock_AsTime%(pSystemClock%)
+
+;----------------------------------------------------------------
+;! Time - HighResolutionClock
+;----------------------------------------------------------------
+BU_HighResolutionClock_Now%()
+BU_HighResolutionClock_Destroy(pHighResolutionClock%)
+BU_HighResolutionClock_Duration%(pHighResolutionClock%, pOther%)
+BU_HighResolutionClock_DurationLL%(pHighResolutionClock%, pOther%)
+BU_HighResolutionClock_DurationF#(pHighResolutionClock%, pOther%)
+BU_HighResolutionClock_DurationD%(pHighResolutionClock%, pOther%)
 
 ; Database --------------------------------------------------------------------
 ; -- SQLite3
@@ -144,29 +233,6 @@ BU_SQLite_Value_SubType%(pValue%)
 BU_SQLite_Value_Duplicate%(pValue%)
 BU_SQLite_Value_Free(pValue%)
 
-; Time ------------------------------------------------------------------------
-; -- Time
-BU_Time_Now%()
-BU_Time_Create%(seconds%, minutes%, hours%, days%, months%, years%, isDST%)
-BU_Time_Destroy(pTime%)
-BU_Time_Format$(pTime%, formatString$)
-; -- Timer
-BU_Timer_Create%(Interval%, hwnd%) : "_BU_Timer_Create@8"
-BU_Timer_Destroy%(Timer%) : "_BU_Timer_Destroy@4"
-BU_Timer_Wait%(Timer%) : "_BU_Timer_Wait@4"
-; -- SystemClock
-BU_SystemClock_Now%()
-BU_SystemClock_Destroy(pSystemClock%)
-BU_SystemClock_FromTime%(pTime%)
-BU_SystemClock_AsTime%(pSystemClock%)
-; -- HighResolutionClock
-BU_HighResolutionClock_Now%()
-BU_HighResolutionClock_Destroy(pHighResolutionClock%)
-BU_HighResolutionClock_Duration%(pHighResolutionClock%, pOther%)
-BU_HighResolutionClock_DurationLL%(pHighResolutionClock%, pOther%)
-BU_HighResolutionClock_DurationF#(pHighResolutionClock%, pOther%)
-BU_HighResolutionClock_DurationD%(pHighResolutionClock%, pOther%)
-
 ; Types - Long ----------------------------------------------------------------
 BU_Long_New%()																	:"_BU_Long_New@0"
 BU_Long_Copy%(pThis%)															:"_BU_Long_Copy@4"
@@ -267,12 +333,16 @@ BU_MassOp_Create%(length%)
 BU_MassOp_Destroy(massop%)
 BU_MassOp_Instruction(massop%, index%, type%, code%, leftOperand%, rightOperand%, result%)
 BU_MassOp_Run(massop%)
+; -- ThreadWrapper
+BU_ThreadWrapper_Create%(pFunction%, pData%)
+BU_ThreadWrapper_Destroy(pThreadWrapper%)
 ; -- Window Message Handler
 BU_WindowMessageHandler_Install(hwnd%)
 BU_WindowMessageHandler_Uninstall(hwnd%)
 BU_WindowMessageHandler_Message_Close%(hwnd%)
 BU_WindowMessageHandler_Message_Destroy%(hwnd%)
 BU_WindowMessageHandler_Message_Resize%(hwnd%, point*)
+
 
 ; Helpers ---------------------------------------------------------------------
 .lib " "
@@ -282,6 +352,7 @@ BU_Helper_Window_LockPointerAuto(HWND%)
 BU_Helper_Window_MakeBorderless(HWND%)
 BU_Helper_Window_Center(HWND%, Monitor%)
 BU_Helper_Window_Fill(HWND%, Monitor%)
+
 ; -- Windows API (User32)
 .lib "User32.dll"
 BU_User32_ClientToScreen%(hwnd%, point*)										: "ClientToScreen"
@@ -298,6 +369,7 @@ BU_User32_GetClientRect%(hwnd%, rect*)											: "GetClientRect"
 BU_User32_GetClientRectEx%(hwnd%, rect%)										: "GetClientRect"
 BU_User32_SetWindowPos%(hwnd%, hWndInsertAfter%, x%, y%, cx%, cy%, wFlags%)		: "SetWindowPos" 
 BU_User32_MessageBox%(hwnd%, lpText$, lpCaption$, uType%)						: "MessageBoxA"
+
 ; -- Windows API (Kernel32)
 .lib "Kernel32.dll"
 BU_Kernel32_FlushFileBuffers%(hFile%)											: "FlushFileBuffers"

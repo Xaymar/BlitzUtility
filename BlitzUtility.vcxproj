@@ -158,16 +158,19 @@
     <ClInclude Include="Container\TypeList.h" />
     <ClInclude Include="Database\SQLite\SQLite.h" />
     <ClInclude Include="Database\SQLite\sqlite3.h" />
-    <ClInclude Include="Timer.h" />
+    <ClInclude Include="System\FileSystem.h" />
+    <ClInclude Include="System\Threading.h" />
     <ClInclude Include="Time\HighResolutionClock.h" />
     <ClInclude Include="Time\SystemClock.h" />
     <ClInclude Include="Time\Time.h" />
+    <ClInclude Include="Time\Timer.h" />
     <ClInclude Include="Utility\MassOp.h" />
     <ClInclude Include="Type\Double.h" />
     <ClInclude Include="Type\Long.h" />
     <ClInclude Include="Utility\IndexerV1.h" />
     <ClInclude Include="Utility\DisplayEnumerator.h" />
     <ClInclude Include="Utility\IndexerV2.h" />
+    <ClInclude Include="Utility\ThreadWrapper.h" />
     <ClInclude Include="Utility\WindowMessageHandler.h" />
   </ItemGroup>
   <ItemGroup>
@@ -175,10 +178,12 @@
     <ClCompile Include="Container\List.cpp" />
     <ClCompile Include="Database\SQLite\SQLite.cpp" />
     <ClCompile Include="Database\SQLite\sqlite3.c" />
-    <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="System\FileSystem.cpp" />
+    <ClCompile Include="System\Threading.cpp" />
     <ClCompile Include="Time\HighResolutionClock.cpp" />
     <ClCompile Include="Time\SystemClock.cpp" />
     <ClCompile Include="Time\Time.cpp" />
+    <ClCompile Include="Time\Timer.cpp" />
     <ClCompile Include="Type\Double.cpp" />
     <ClCompile Include="Type\Long.cpp" />
     <ClCompile Include="Utility\IndexerV1.cpp" />
@@ -186,6 +191,7 @@
     <ClCompile Include="Utility\DisplayEnumerator.cpp" />
     <ClCompile Include="Utility\IndexerV2.cpp" />
     <ClCompile Include="Utility\MassOp.cpp" />
+    <ClCompile Include="Utility\ThreadWrapper.cpp" />
     <ClCompile Include="Utility\WindowMessageHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
